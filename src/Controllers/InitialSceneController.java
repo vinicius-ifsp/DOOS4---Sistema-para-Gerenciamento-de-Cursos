@@ -1,4 +1,4 @@
-package InitialScene;
+package Controllers;
 
 public class InitialSceneController {
 }
