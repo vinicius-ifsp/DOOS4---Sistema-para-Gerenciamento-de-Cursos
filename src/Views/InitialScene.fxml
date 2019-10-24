@@ -26,7 +26,7 @@
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #4D4D4D;" GridPane.rowIndex="1">
          <children>
             <MenuBar minHeight="-Infinity" prefHeight="44.0" prefWidth="1174.0" style="-fx-background-color: #323232; -fx-effect: dropshadow(gaussian, #000000, 10, 0, 0, 0);;" AnchorPane.bottomAnchor="656.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <menus>
+              <menus>
                   <Menu mnemonicParsing="false">
                      <graphic>
                         <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" text="Button" textOverrun="CLIP">
@@ -38,7 +38,7 @@
                         <Menu mnemonicParsing="false" />
                      </items>
                   </Menu>
-               </menus>
+              </menus>
                <padding>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </padding>

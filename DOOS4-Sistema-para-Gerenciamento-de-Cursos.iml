@@ -7,6 +7,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="lib-javafx-windows" level="project" />
+    <orderEntry type="library" exported="" name="lib-javafx-windows" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="src" level="application" />
+    <orderEntry type="library" name="javafx-swt" level="application" />
   </component>
 </module>
