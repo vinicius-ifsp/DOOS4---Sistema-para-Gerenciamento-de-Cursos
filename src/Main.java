@@ -8,7 +8,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("../Views/SubjectsImport.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Views/StudentsView.fxml"));
         primaryStage.setTitle("iCollege");
         primaryStage.setScene(new Scene(root));
         primaryStage.resizableProperty().setValue(Boolean.FALSE);

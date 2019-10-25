@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="370.0" prefWidth="650.0" style="-fx-background-color: #707070;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.StudentRegistrationModal">
+   <children>
+      <MenuBar prefHeight="29.0" prefWidth="501.0" style="-fx-background-color: #323232;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <menus>
+            <Menu mnemonicParsing="false">
+               <graphic>
+                  <Text fill="GAINSBORO" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastrar Aluno" textAlignment="CENTER" wrappingWidth="520.85693359375">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Text>
+               </graphic>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <Label layoutX="28.0" layoutY="63.0" text="NOME" textFill="#e8e8e8" AnchorPane.leftAnchor="32.0" />
+      <TextField layoutX="28.0" layoutY="78.0" prefHeight="25.0" prefWidth="325.0" AnchorPane.leftAnchor="32.0" />
+      <TextField layoutX="328.0" layoutY="78.0" prefHeight="25.0" prefWidth="244.0" AnchorPane.rightAnchor="32.0" />
+      <Label layoutX="374.0" layoutY="63.0" text="PRONTUARIO" textFill="#e8e8e8" />
+      <TextField layoutX="32.0" layoutY="139.0" prefHeight="25.0" prefWidth="136.0" AnchorPane.leftAnchor="32.0" />
+      <Label layoutX="32.0" layoutY="124.0" text="ANO DE INGRESSO" textFill="#e8e8e8">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="176.0" layoutY="124.0" text="SEMESTRE DE INGRESSO" textFill="#e8e8e8">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </Label>
+      <TextField layoutX="176.0" layoutY="139.0" prefHeight="25.0" prefWidth="151.0" />
+      <Label layoutX="338.0" layoutY="124.0" text="SEMESTRE ATUAL" textFill="#e8e8e8">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </Label>
+      <TextField layoutX="338.0" layoutY="139.0" prefHeight="25.0" prefWidth="136.0" />
+      <DatePicker layoutX="482.0" layoutY="139.0" prefHeight="25.0" prefWidth="136.0" />
+      <Button layoutX="443.0" layoutY="320.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" style="-fx-background-color: #DA1A1A;" text="Fechar" textFill="WHITE" />
+      <Label layoutX="482.0" layoutY="124.0" text="DATA DE NASCIMENTO" textFill="#e8e8e8">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </Label>
+      <Pane prefHeight="141.0" prefWidth="391.0" style="-fx-border-color: #A8A8A8; -fx-border-radius: 5px;" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="227.0">
+         <children>
+            <Text fill="GAINSBORO" layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Disciplinas Concluidas">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+            <ScrollPane layoutX="13.0" layoutY="21.0" prefHeight="119.0" prefWidth="366.0" style="-fx-background-color: #707070;">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="217.0" prefWidth="378.0" style="-fx-background-color: #707070;" />
+              </content>
+            </ScrollPane>
+         </children>
+      </Pane>
+      <Button layoutX="550.0" layoutY="320.0" mnemonicParsing="false" style="-fx-background-color: #1AC937;" text="Cadastrar" textFill="WHITE" AnchorPane.rightAnchor="32.0" />
+   </children>
+</AnchorPane>
