@@ -7,8 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane prefHeight="421.0" prefWidth="666.0" style="-fx-background-color: #707070;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.InitialScreenModal">
+<AnchorPane prefHeight="421.0" prefWidth="666.0" style="-fx-background-color: #707070;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.InitialScreenModal">
    <children>
       <MenuBar prefHeight="44.0" prefWidth="600.0" style="-fx-background-color: #323232;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
@@ -48,7 +47,7 @@
       </Label>
       <TextField layoutX="464.0" layoutY="186.0" prefHeight="31.0" prefWidth="165.0" AnchorPane.rightAnchor="32.0" />
       <Button layoutX="32.0" layoutY="258.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="150.0" style="-fx-background-color: #22A3C2;" text="Inserir Disciplina" textFill="WHITE" />
-      <Button layoutX="374.0" layoutY="355.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="131.0" style="-fx-background-color: #E30000;" text="Fechar" textFill="WHITE" />
-      <Button layoutX="496.0" layoutY="355.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="111.0" style="-fx-background-color: #00D440;" text="Cadastrar" textFill="WHITE" AnchorPane.rightAnchor="32.0" />
+      <Button fx:id="btnClose" layoutX="374.0" layoutY="355.0" mnemonicParsing="false" onMouseClicked="#close" prefHeight="31.0" prefWidth="131.0" style="-fx-background-color: #E30000;" text="Fechar" textFill="WHITE" />
+      <Button layoutX="496.0" layoutY="355.0" mnemonicParsing="false" onMouseClicked="#register" prefHeight="31.0" prefWidth="111.0" style="-fx-background-color: #00D440;" text="Cadastrar" textFill="WHITE" AnchorPane.rightAnchor="32.0" />
    </children>
 </AnchorPane>

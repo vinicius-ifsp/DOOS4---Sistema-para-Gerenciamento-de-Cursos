@@ -38,7 +38,7 @@
                   <Font name="Arial Black" size="15.0" />
                </font>
             </Label>
-            <Button layoutX="329.0" layoutY="243.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="133.0" style="-fx-background-color: #1AC937;" text="Cadastrar" textAlignment="CENTER" textFill="WHITE" />
+            <Button layoutX="329.0" layoutY="243.0" mnemonicParsing="false" onMouseClicked="#register" prefHeight="31.0" prefWidth="133.0" style="-fx-background-color: #1AC937;" text="Cadastrar" textAlignment="CENTER" textFill="WHITE" />
             <Button fx:id="btnCancel" layoutX="181.0" layoutY="243.0" mnemonicParsing="false" onMouseClicked="#close" prefHeight="31.0" prefWidth="133.0" style="-fx-background-color: #DA1A1A;" text="Cancelar" textAlignment="CENTER" textFill="WHITE" />
             </children>
         </AnchorPane>

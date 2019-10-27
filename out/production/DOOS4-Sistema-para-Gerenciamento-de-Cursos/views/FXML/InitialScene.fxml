@@ -56,7 +56,7 @@
                </font>
             </Text>
             <Rectangle arcHeight="3.0" arcWidth="1.0" fill="WHITE" height="3.0" layoutX="32.0" layoutY="120.0" stroke="TRANSPARENT" strokeType="INSIDE" width="263.0" AnchorPane.leftAnchor="32.0" />
-            <Button layoutX="32.0" layoutY="599.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="724.0" style="-fx-background-color: #323232; -fx-background-radius: 5px;" text="Cadastrar um novo curso" textFill="WHITE" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.0">
+            <Button fx:id="btnRegister" layoutX="32.0" layoutY="599.0" mnemonicParsing="false" onMouseClicked="#registerCourse" prefHeight="59.0" prefWidth="724.0" style="-fx-background-color: #323232; -fx-background-radius: 5px;" text="Cadastrar um novo curso" textFill="WHITE" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.0">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>

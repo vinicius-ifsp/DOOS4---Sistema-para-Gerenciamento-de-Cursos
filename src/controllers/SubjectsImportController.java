@@ -6,10 +6,16 @@ import javafx.stage.Stage;
 
 public class SubjectsImportController {
     @FXML
-    Button btnCancel;
+    private Button btnCancel;
 
-    public void close() {
+    @FXML
+    private void close() {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    private void register() {
+        close();
     }
 }
