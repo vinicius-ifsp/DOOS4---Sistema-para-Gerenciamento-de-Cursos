@@ -4,14 +4,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class InitialScreenModal {
-
+public class SubjectsImportController {
     @FXML
-    private Button btnClose;
+    private Button btnCancel;
 
     @FXML
     private void close() {
-        Stage stage = (Stage) btnClose.getScene().getWindow();
+        Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
     }
 
