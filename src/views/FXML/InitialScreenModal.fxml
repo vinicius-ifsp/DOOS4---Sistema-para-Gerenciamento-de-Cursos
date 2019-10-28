@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="421.0" prefWidth="666.0" style="-fx-background-color: #707070;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.InitialScreenModal">
+   <children>
+      <MenuBar prefHeight="44.0" prefWidth="600.0" style="-fx-background-color: #323232;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false">
+               <graphic>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastrar Curso" textAlignment="CENTER" wrappingWidth="627.3076171875">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+               </graphic>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Label layoutX="40.0" layoutY="94.0" text="NOME" textFill="WHITE" AnchorPane.leftAnchor="32.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField layoutX="40.0" layoutY="116.0" prefHeight="31.0" prefWidth="536.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.0" />
+      <TextField layoutX="32.0" layoutY="186.0" prefHeight="31.0" prefWidth="243.0" AnchorPane.leftAnchor="32.0" />
+      <Label layoutX="32.0" layoutY="164.0" text="PPC" textFill="WHITE" AnchorPane.leftAnchor="32.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="294.0" layoutY="166.0" text="NUMERO DE PERIODOS" textFill="WHITE">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </Label>
+      <TextField layoutX="294.0" layoutY="186.0" prefHeight="31.0" prefWidth="159.0" />
+      <Label layoutX="469.0" layoutY="166.0" text="CARGA HORARIA" textFill="WHITE" AnchorPane.rightAnchor="95.0">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </Label>
+      <TextField layoutX="464.0" layoutY="186.0" prefHeight="31.0" prefWidth="165.0" AnchorPane.rightAnchor="32.0" />
+      <Button layoutX="32.0" layoutY="258.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="150.0" style="-fx-background-color: #22A3C2;" text="Inserir Disciplina" textFill="WHITE" />
+      <Button fx:id="btnClose" layoutX="374.0" layoutY="355.0" mnemonicParsing="false" onMouseClicked="#close" prefHeight="31.0" prefWidth="131.0" style="-fx-background-color: #E30000;" text="Fechar" textFill="WHITE" />
+      <Button layoutX="496.0" layoutY="355.0" mnemonicParsing="false" onMouseClicked="#register" prefHeight="31.0" prefWidth="111.0" style="-fx-background-color: #00D440;" text="Cadastrar" textFill="WHITE" AnchorPane.rightAnchor="32.0" />
+   </children>
+</AnchorPane>
