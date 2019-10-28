@@ -3,17 +3,18 @@ package controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import views.loaders.WindowStudentRegistrationModal;
 import views.loaders.WindowSubjectsImport;
 
-public class SubjectsViewController {
+public class StudentsViewController {
 
     @FXML
     private Button btnRegister;
 
     @FXML
     private void openRegisterModal() {
-        WindowSubjectsImport windowSubjectsImport = new WindowSubjectsImport();
-        windowSubjectsImport.show();
+        WindowStudentRegistrationModal windowStudentRegistrationModal = new WindowStudentRegistrationModal();
+        windowStudentRegistrationModal.show();
     }
 
     @FXML
