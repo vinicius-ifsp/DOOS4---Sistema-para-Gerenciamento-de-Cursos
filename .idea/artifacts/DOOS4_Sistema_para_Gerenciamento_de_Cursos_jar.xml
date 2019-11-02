@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="DOOS4-Sistema-para-Gerenciamento-de-Cursos:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/DOOS4_Sistema_para_Gerenciamento_de_Cursos_jar</output-path>
+    <root id="archive" name="DOOS4-Sistema-para-Gerenciamento-de-Cursos.jar">
+      <element id="module-output" name="DOOS4-Sistema-para-Gerenciamento-de-Cursos" />
+    </root>
+  </artifact>
+</component>
