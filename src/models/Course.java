@@ -1,0 +1,86 @@
+package models;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+public class Course {
+    private int code, periodQty;
+    private String name, ppc;
+    private double workload;
+
+    private HashMap<String, Discipline> disciplines = new HashMap<>();
+
+    public Course() {
+    }
+
+    public Course(int code, int periodQty, String name, String ppc, double workload,  HashMap<String, Discipline> disciplines) {
+        this.code = code;
+        this.periodQty = periodQty;
+        this.name = name;
+        this.ppc = ppc;
+        this.workload = workload;
+        if (disciplines != null)
+            this.disciplines = disciplines;
+    }
+
+    public void addDiscipline(Discipline discipline) {
+        disciplines.put(discipline.getCode(), discipline);
+    }
+
+    public boolean hasDiscipline(String code) {
+        return disciplines.containsKey(code);
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public int getPeriodQty() {
+        return periodQty;
+    }
+
+    public void setPeriodQty(int periodQty) {
+        this.periodQty = periodQty;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPpc() {
+        return ppc;
+    }
+
+    public void setPpc(String ppc) {
+        this.ppc = ppc;
+    }
+
+    public double getWorkload() {
+        return workload;
+    }
+
+    public void setWorkload(double workload) {
+        this.workload = workload;
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "code=" + code +
+                ", periodQty=" + periodQty +
+                ", name='" + name + '\'' +
+                ", ppc='" + ppc + '\'' +
+                ", workload=" + workload +
+                ", disciplines=" + disciplines +
+                '}';
+    }
+}

@@ -26,10 +26,10 @@
     <children>
         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="499.0" style="-fx-background-color: #4D4D4D;" GridPane.rowIndex="1">
             <children>
-            <TextField layoutX="34.0" layoutY="79.0" prefHeight="31.0" prefWidth="428.0" />
+            <TextField fx:id="txtName" layoutX="34.0" layoutY="79.0" prefHeight="31.0" prefWidth="428.0" />
                 <Rectangle arcHeight="3.0" arcWidth="10.0" fill="#323232" height="31.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-effect: dropshadow(gaussian, #000000, 10, 0, 0, 0);" width="500.0" />
-            <TextField layoutX="34.0" layoutY="151.0" prefHeight="31.0" prefWidth="213.0" />
-            <TextField layoutX="275.0" layoutY="151.0" />
+            <TextField fx:id="txtCode" layoutX="34.0" layoutY="151.0" prefHeight="31.0" prefWidth="213.0" />
+            <TextField fx:id="txtWorkload" layoutX="275.0" layoutY="151.0" />
             <Label layoutX="34.0" layoutY="49.0" text="Nome" textFill="WHITE" />
             <Label layoutX="34.0" layoutY="123.0" text="Código" textFill="WHITE" />
             <Label layoutX="275.0" layoutY="123.0" text="Carga Horária" textFill="WHITE" />
