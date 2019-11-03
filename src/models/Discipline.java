@@ -1,13 +1,13 @@
 package models;
 
-import java.util.HashMap;
+import java.util.*;
 
 public class Discipline {
     private String code;
     private String name;
     private double workload;
-
-    private HashMap<String, Discipline> dependencies = new HashMap<>();
+    private Course course;
+    private List<Discipline> dependencies = new ArrayList<>();
 
     public Discipline() {
     }
@@ -19,8 +19,12 @@ public class Discipline {
     }
 
     public void addDependency(Discipline discipline) {
-        if (!dependencies.containsKey(discipline.getCode()))
-            dependencies.put(discipline.getCode(), discipline);
+        if (!dependencies.contains(discipline))
+            dependencies.add(discipline);
+    }
+
+    public Iterator<Discipline> getDependencies() {
+        return dependencies.iterator();
     }
 
     public String getCode() {
@@ -45,6 +49,14 @@ public class Discipline {
 
     public void setWorkload(double workload) {
         this.workload = workload;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
     @Override

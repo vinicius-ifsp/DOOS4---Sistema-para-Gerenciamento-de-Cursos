@@ -1,8 +1,7 @@
 package models;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+
 
 public class Course {
     private int code, periodQty;
@@ -25,11 +24,16 @@ public class Course {
     }
 
     public void addDiscipline(Discipline discipline) {
+        discipline.setCourse(this);
         disciplines.put(discipline.getCode(), discipline);
     }
 
     public boolean hasDiscipline(String code) {
         return disciplines.containsKey(code);
+    }
+
+    public Discipline getDiscipline(String code) {
+        return disciplines.get(code);
     }
 
     public int getCode() {

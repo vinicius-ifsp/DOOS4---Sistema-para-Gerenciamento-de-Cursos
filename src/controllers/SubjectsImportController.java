@@ -6,6 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import models.Course;
 import models.Discipline;
+import resources.CourseSingleton;
 import views.loaders.MockSingleton;
 
 public class SubjectsImportController {
@@ -32,15 +33,15 @@ public class SubjectsImportController {
             return;
         }
 
-        // TO-DO Change MockSingleton to class dao
-        Course course = MockSingleton.getInstance().getCourse(1);
+        Course course = CourseSingleton.getInstance().getCourse();
         String code = txtCode.getText();
         if (!course.hasDiscipline(code)) {
             Discipline discipline = new Discipline(code, txtName.getText(),
                     Double.parseDouble(txtWorkload.getText()));
             System.out.println(discipline);
             System.out.println("Course name: " + course.getName());
-             course.addDiscipline(discipline);
+
+            course.addDiscipline(discipline);
 
             // TO - DO Msg de Success
             close();
