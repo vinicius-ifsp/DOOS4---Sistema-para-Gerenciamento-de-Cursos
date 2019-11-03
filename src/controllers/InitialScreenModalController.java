@@ -33,7 +33,7 @@ public class InitialScreenModalController {
     @FXML
     private void register() {
         if (!isFormValid()) {
-            // TO-DO show msg in invalid fields
+            // TODO show msg in invalid fields
             return;
         }
 
@@ -47,10 +47,10 @@ public class InitialScreenModalController {
 
             MockSingleton.getInstance().addCourse(course);
             System.out.println(course);
-            // TO - DO Msg de Success
+            // TODO Msg de Success
             close();
         } else {
-            // TO-DO show msg course already registered
+            // TODO show msg course already registered
         }
     }
 

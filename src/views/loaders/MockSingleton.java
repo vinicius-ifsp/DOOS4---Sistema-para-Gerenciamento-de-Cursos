@@ -41,9 +41,10 @@ public class MockSingleton {
 
     @Override
     public String toString() {
-        return "MockSingleton{" +
-                "courses=" + courses +
-                '}';
+        StringBuilder builder = new StringBuilder("MockSingleton{\ncourses{\n");
+        for(Course course: courses)
+            builder.append(course+"\n");
+        return builder.append("}}").toString();
     }
 
     private void setInitialData() {
