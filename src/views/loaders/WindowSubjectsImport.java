@@ -7,7 +7,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class WindowSubjectsImport {
-
     public void show(){
         FXMLLoader loader = new FXMLLoader();
         Pane sceneGraph;

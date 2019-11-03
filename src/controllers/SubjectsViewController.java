@@ -3,12 +3,15 @@ package controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import models.Course;
 import views.loaders.WindowSubjectsImport;
 
 public class SubjectsViewController {
 
     @FXML
     private Button btnRegister;
+
+    private Course course;
 
     @FXML
     private void openRegisterModal() {
@@ -22,4 +25,7 @@ public class SubjectsViewController {
         stage.close();
     }
 
+    public void setCourse(Course course) {
+        this.course = course;
+    }
 }
