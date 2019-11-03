@@ -29,7 +29,7 @@ public class SubjectsImportController {
     @FXML
     private void register() {
         if (!isFormValid()) {
-            // TO-DO show msg in invalid fields
+            // TODO show msg in invalid fields
             return;
         }
 
@@ -42,11 +42,10 @@ public class SubjectsImportController {
             System.out.println("Course name: " + course.getName());
 
             course.addDiscipline(discipline);
-
-            // TO - DO Msg de Success
+            // TODO Msg de Success
             close();
         } else {
-            // TO-DO show msg discipline already registered
+            // TODO show msg discipline already registered
         }
 
     }

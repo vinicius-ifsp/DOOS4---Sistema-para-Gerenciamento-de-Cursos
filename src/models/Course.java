@@ -8,6 +8,7 @@ public class Course {
     private String name, ppc;
     private double workload;
 
+    private HashMap<String, Student> students = new HashMap<>();
     private HashMap<String, Discipline> disciplines = new HashMap<>();
 
     public Course() {
@@ -30,6 +31,15 @@ public class Course {
 
     public boolean hasDiscipline(String code) {
         return disciplines.containsKey(code);
+    }
+
+    public void addStudent(Student student) {
+        student.setCourse(this);
+        students.put(student.getProntuario(), student);
+    }
+
+    public boolean hasStudent(String prontuario) {
+        return students.containsKey(prontuario);
     }
 
     public Discipline getDiscipline(String code) {
@@ -84,6 +94,7 @@ public class Course {
                 ", name='" + name + '\'' +
                 ", ppc='" + ppc + '\'' +
                 ", workload=" + workload +
+                ", students=" + students +
                 ", disciplines=" + disciplines +
                 '}';
     }
