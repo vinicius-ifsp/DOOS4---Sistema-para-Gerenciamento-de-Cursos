@@ -1,13 +1,22 @@
 package controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import models.Course;
 import views.loaders.WindowSubjectsImport;
 
 public class SubjectsViewController {
+    ObservableList<String> items = FXCollections.observableArrayList (
+            "Programação e Lógica 1", "Inglês", "Programação Orientada a Objetos", "Redes 2");
+    @FXML private ListView<String> subjectsList;
 
+    @FXML void initialize() {
+        subjectsList.setItems(items);
+    }
     @FXML
     private Button btnRegister;
 

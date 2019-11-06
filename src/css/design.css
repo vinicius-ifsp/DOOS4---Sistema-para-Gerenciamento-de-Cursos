@@ -1,0 +1,73 @@
+.jfx-decorator {
+    -fx-decorator-color: blue;
+}
+
+.jfx-decorator .jfx-decorator-buttons-container {
+    -fx-background-color: -fx-decorator-color;
+}
+
+.jfx-decorator .resize-border {
+    -fx-border-color: -fx-decorator-color;
+    -fx-border-width: 0 4 4 4;
+}
+
+#btnRegister{
+    -fx-background-color:  #323232;
+}
+#btnRegister:hover{
+    -fx-background-color: #1157CD;
+}
+
+#btnRegisterSubject{
+    -fx-background-color:  #9640C8;
+    -fx-cursor: hand;
+}
+
+#btnRegisterSubject:hover{
+    -fx-background-color: #741DA6;
+}
+
+.table-view{
+   -fx-background-color: transparent;
+}
+
+.table-view:focused{
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header{
+    -fx-background-color: #323232;
+    -fx-text-fill: #ffffff;
+}
+.table-view .column-header-background .label{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+.table-row-cell{
+    -fx-background-color: -fx-table-cell-border-color, #4D4D4D;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 1px;
+}
+
+.table-row-cell:odd{
+    -fx-background-color: -fx-table-cell-border-color, #323232;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 1px;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #1157CD;
+    -fx-background-insets: 0;
+    -fx-background-radius: 1;
+}
+
+#importStudentsButton{
+    -fx-background-color:  #37A5BC;
+    -fx-cursor: hand;
+}
+
+#importStudentsButton:hover{
+    -fx-background-color:  #147488;
+
+}
