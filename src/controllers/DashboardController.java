@@ -3,10 +3,8 @@ package controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import resources.CourseSingleton;
-import views.loaders.MockSingleton;
 import views.loaders.WindowStudentsView;
-import views.loaders.WindowSubjectsView;
+import views.loaders.WindowDisciplinesView;
 
 public class DashboardController {
     @FXML
@@ -14,18 +12,14 @@ public class DashboardController {
 
     @FXML
     private void initialize() {
-        // TODO Change by course selected
-        if (CourseSingleton.getInstance().getCourse() == null)
-            CourseSingleton.getInstance().setCourse(MockSingleton.getInstance().getCourse(1));
-
         // TODO load courses statistics
     }
 
 
     @FXML
     private void openDisciplines() {
-        WindowSubjectsView windowSubjectsView = new WindowSubjectsView();
-        windowSubjectsView.show();
+        WindowDisciplinesView windowDisciplinesView = new WindowDisciplinesView();
+        windowDisciplinesView.show();
     }
 
     @FXML
