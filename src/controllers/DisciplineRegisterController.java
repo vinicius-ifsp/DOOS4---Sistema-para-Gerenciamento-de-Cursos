@@ -32,7 +32,6 @@ public class DisciplineRegisterController {
 
     private List<Discipline> disciplines;
 
-
     @FXML
     private ListView<CheckBox> listCourses;
 
@@ -54,7 +53,7 @@ public class DisciplineRegisterController {
             }
         }));
     }
-
+  
     @FXML
     private void close() {
         Stage stage = (Stage) btnCancel.getScene().getWindow();

@@ -43,7 +43,7 @@ public class InitialScreenModalController {
             return;
         }
 
-        int code = 3;
+        int code = MockSingleton.getInstance().generateCode();
         if (!MockSingleton.getInstance().hasCourse(code)) {
             course.setCode(code);
             course.setPeriodQty(Integer.parseInt(txtPeriodQty.getText()));
