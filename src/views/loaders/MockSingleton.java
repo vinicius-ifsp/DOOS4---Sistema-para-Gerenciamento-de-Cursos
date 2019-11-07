@@ -39,6 +39,10 @@ public class MockSingleton {
         return null;
     }
 
+    public Iterator<Course> getCourses() {
+        return courses.iterator();
+    }
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder("MockSingleton{\ncourses{\n");

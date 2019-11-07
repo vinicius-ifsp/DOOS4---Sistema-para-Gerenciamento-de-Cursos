@@ -9,6 +9,10 @@ import models.Discipline;
 import resources.CourseSingleton;
 import views.loaders.MockSingleton;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 public class SubjectsImportController {
     @FXML
     private TextField txtName;
@@ -18,6 +22,8 @@ public class SubjectsImportController {
     private TextField txtWorkload;
     @FXML
     private Button btnCancel;
+
+    private List<Discipline> disciplines;
 
     @FXML
     private void close() {
@@ -52,5 +58,11 @@ public class SubjectsImportController {
 
     private boolean isFormValid() {
         return true;
+    }
+
+    public void setDisciplines(Iterator<Discipline> disciplinesIt) {
+        disciplines = new ArrayList<>();
+        while (disciplinesIt.hasNext())
+            disciplines.add(disciplinesIt.next());
     }
 }

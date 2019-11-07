@@ -1,6 +1,8 @@
 package models;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 
 public class Course {
@@ -33,6 +35,10 @@ public class Course {
         return disciplines.containsKey(code);
     }
 
+   public Iterator<Map.Entry<String, Discipline>> getDisciplines() {
+        return disciplines.entrySet().iterator();
+    }
+
     public void addStudent(Student student) {
         student.setCourse(this);
         students.put(student.getProntuario(), student);
@@ -40,6 +46,10 @@ public class Course {
 
     public boolean hasStudent(String prontuario) {
         return students.containsKey(prontuario);
+    }
+
+    public Iterator<Map.Entry<String, Student>> getStudents() {
+        return students.entrySet().iterator();
     }
 
     public Discipline getDiscipline(String code) {

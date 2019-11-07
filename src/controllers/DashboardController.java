@@ -13,11 +13,14 @@ public class DashboardController {
     @FXML
     private Button btnDisciplines;
 
-    public DashboardController() {
+
+    @FXML
+    private void initialize() {
         // TODO Change by course selected
         if (CourseSingleton.getInstance().getCourse() == null)
             CourseSingleton.getInstance().setCourse(MockSingleton.getInstance().getCourse(1));
 
+        // TODO load courses statistics
     }
 
 
