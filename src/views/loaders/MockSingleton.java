@@ -43,6 +43,10 @@ public class MockSingleton {
         return courses.iterator();
     }
 
+    public int generateCode() {
+        return courses.size() + 1;
+    }
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder("MockSingleton{\ncourses{\n");

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class SubjectsImportController {
+public class DisciplineRegisterController {
     @FXML
     private TextField txtName;
     @FXML
