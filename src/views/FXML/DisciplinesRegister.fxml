@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="290.0" prefWidth="501.0" style="-fx-background-color: #4D4D4D;" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DisciplineRegisterController">
+<GridPane alignment="center" hgap="10" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="600.0" style="-fx-background-color: #4D4D4D;" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DisciplineRegisterController">
     <columnConstraints>
         <ColumnConstraints />
     </columnConstraints>
@@ -24,22 +24,24 @@
         <RowConstraints />
     </rowConstraints>
     <children>
-        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="499.0" style="-fx-background-color: #4D4D4D;" GridPane.rowIndex="1">
+        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="600.0" style="-fx-background-color: #4D4D4D;" GridPane.rowIndex="1">
             <children>
-            <TextField fx:id="txtName" layoutX="34.0" layoutY="79.0" prefHeight="31.0" prefWidth="428.0" />
-                <Rectangle arcHeight="3.0" arcWidth="10.0" fill="#323232" height="31.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-effect: dropshadow(gaussian, #000000, 10, 0, 0, 0);" width="500.0" />
-            <TextField fx:id="txtCode" layoutX="34.0" layoutY="151.0" prefHeight="31.0" prefWidth="213.0" />
-            <TextField fx:id="txtWorkload" layoutX="275.0" layoutY="151.0" />
-            <Label layoutX="34.0" layoutY="49.0" text="Nome" textFill="WHITE" />
-            <Label layoutX="34.0" layoutY="123.0" text="Código" textFill="WHITE" />
-            <Label layoutX="275.0" layoutY="123.0" text="Carga Horária" textFill="WHITE" />
-            <Label layoutX="153.0" layoutY="4.0" text="Cadastro de Disciplinas" textFill="WHITE">
-               <font>
-                  <Font name="Arial Black" size="15.0" />
-               </font>
-            </Label>
-            <Button layoutX="329.0" layoutY="243.0" mnemonicParsing="false" onMouseClicked="#register" prefHeight="31.0" prefWidth="133.0" style="-fx-background-color: #1AC937;" text="Cadastrar" textAlignment="CENTER" textFill="WHITE" />
-            <Button fx:id="btnCancel" layoutX="181.0" layoutY="243.0" mnemonicParsing="false" onMouseClicked="#close" prefHeight="31.0" prefWidth="133.0" style="-fx-background-color: #DA1A1A;" text="Cancelar" textAlignment="CENTER" textFill="WHITE" />
+                <TextField fx:id="txtName" layoutX="34.0" layoutY="79.0" prefHeight="31.0" prefWidth="274.0" />
+                <Rectangle arcHeight="3.0" arcWidth="10.0" fill="#323232" height="31.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-effect: dropshadow(gaussian, #000000, 10, 0, 0, 0);" width="600.0" />
+                <TextField fx:id="txtCode" layoutX="34.0" layoutY="154.0" prefHeight="31.0" prefWidth="274.0" />
+                <TextField fx:id="txtWorkload" layoutX="34.0" layoutY="232.0" prefHeight="31.0" prefWidth="274.0" />
+                <Label layoutX="34.0" layoutY="49.0" text="Nome" textFill="WHITE" />
+                <Label layoutX="34.0" layoutY="126.0" text="Código" textFill="WHITE" />
+                <Label layoutX="34.0" layoutY="204.0" text="Carga Horária" textFill="WHITE" />
+                <Label layoutX="226.0" layoutY="6.0" text="Cadastro de Disciplinas" textFill="WHITE">
+                    <font>
+                        <Font name="Arial Black" size="15.0" />
+                    </font>
+                </Label>
+                <Button layoutX="182.0" layoutY="273.0" mnemonicParsing="false" onMouseClicked="#register" prefHeight="31.0" prefWidth="133.0" style="-fx-background-color: #1AC937;" text="Cadastrar" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="32.0" />
+                <Button fx:id="btnCancel" layoutX="34.0" layoutY="273.0" mnemonicParsing="false" onMouseClicked="#close" prefHeight="31.0" prefWidth="133.0" style="-fx-background-color: #DA1A1A;" text="Cancelar" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="32.0" />
+            <ListView layoutX="340.0" layoutY="64.0" prefHeight="241.0" prefWidth="228.0" style="-fx-background-color: #4D4D4D;" AnchorPane.bottomAnchor="32.0" AnchorPane.rightAnchor="32.0" />
+            <Text fill="WHITE" layoutX="340.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pre-Requisito" />
             </children>
         </AnchorPane>
     </children>
