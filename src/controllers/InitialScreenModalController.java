@@ -5,9 +5,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import models.Course;
+import models.Discipline;
 import resources.CourseSingleton;
 import views.loaders.MockSingleton;
 import views.loaders.WindowSubjectsImport;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 public class InitialScreenModalController {
     @FXML
@@ -57,11 +63,19 @@ public class InitialScreenModalController {
     @FXML
     private void openWindowAddDiscipline() {
         CourseSingleton.getInstance().setCourse(course);
-        WindowSubjectsImport windowSubjectsImport = new WindowSubjectsImport();
+        WindowSubjectsImport windowSubjectsImport = new WindowSubjectsImport(getDisciplinesExists());
         windowSubjectsImport.show();
     }
 
     private boolean isFormValid() {
         return true;
+    }
+
+    private Iterator<Discipline> getDisciplinesExists() {
+        List<Discipline> disciplines = new ArrayList<>();
+        Iterator<Map.Entry<String, Discipline>> disciplinesIt = course.getDisciplines();
+        while (disciplinesIt.hasNext())
+            disciplines.add(disciplinesIt.next().getValue());
+        return disciplines.iterator();
     }
 }

@@ -5,6 +5,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import models.Course;
+import resources.CourseSingleton;
+import utils.ListViewPropertyCellFactory;
 import views.loaders.MockSingleton;
 import views.loaders.WindowDashboard;
 import views.loaders.WindowInitialScreenModal;
@@ -12,24 +14,28 @@ import views.loaders.WindowInitialScreenModal;
 import java.util.Iterator;
 
 public class InitialSceneController {
+    @FXML private ListView<Course> listCourses;
 
     private ObservableList<Course> courses;
 
     @FXML
     private void initialize() {
-        //TODO Change listView
-        ListView listView = new ListView();
         Iterator<Course> coursesIt = MockSingleton.getInstance().getCourses();
         courses = FXCollections.observableArrayList();
         while(coursesIt.hasNext())
             courses.add(coursesIt.next());
-        listView.setItems(courses);
+        listCourses.setItems(courses);
+        listCourses.setCellFactory(new ListViewPropertyCellFactory<>(Course::getName));
     }
 
     @FXML
     private void openCourse() {
-        WindowDashboard windowDashboard = new WindowDashboard();
-        windowDashboard.show();
+        Course selectedCourse = listCourses.getSelectionModel().getSelectedItem();
+        if (selectedCourse != null) {
+            CourseSingleton.getInstance().setCourse(selectedCourse);
+            WindowDashboard windowDashboard = new WindowDashboard();
+            windowDashboard.show();
+        }
     }
 
     @FXML

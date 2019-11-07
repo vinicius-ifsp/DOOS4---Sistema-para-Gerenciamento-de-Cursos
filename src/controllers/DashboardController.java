@@ -9,10 +9,8 @@ import views.loaders.WindowStudentsView;
 import views.loaders.WindowSubjectsView;
 
 public class DashboardController {
-
     @FXML
     private Button btnDisciplines;
-
 
     @FXML
     private void initialize() {

@@ -20,3 +20,4 @@ public class WindowInitialScene extends Application {
         launch(args);
     }
 }
+

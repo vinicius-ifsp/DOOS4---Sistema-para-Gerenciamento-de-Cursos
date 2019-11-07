@@ -9,29 +9,27 @@ import javafx.stage.Stage;
 import models.Course;
 import models.Discipline;
 import resources.CourseSingleton;
+import utils.ListViewPropertyCellFactory;
 import views.loaders.WindowSubjectsImport;
 
 import java.util.Iterator;
 import java.util.Map;
 
 public class SubjectsViewController {
-
-    @FXML
-    private Button btnRegister;
+    @FXML private ListView<Discipline> subjectsList;
 
     private Course course;
     private ObservableList<Discipline> disciplines;
 
     @FXML
     private void initialize() {
-        //TODO Change listView
-        ListView listView = new ListView();
         course = CourseSingleton.getInstance().getCourse();
         Iterator<Map.Entry<String, Discipline>> disciplinesIt = course.getDisciplines();
         disciplines = FXCollections.observableArrayList();
         while (disciplinesIt.hasNext())
             disciplines.add(disciplinesIt.next().getValue());
-        listView.setItems(disciplines);
+        subjectsList.setItems(disciplines);
+        subjectsList.setCellFactory(new ListViewPropertyCellFactory<>(Discipline::getName));
     }
 
 
@@ -43,7 +41,7 @@ public class SubjectsViewController {
 
     @FXML
     private void close() {
-        Stage stage = (Stage) btnRegister.getScene().getWindow();
+        Stage stage = (Stage) subjectsList.getScene().getWindow();
         stage.close();
     }
 }

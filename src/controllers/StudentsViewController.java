@@ -7,11 +7,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import models.Course;
-import models.Discipline;
 import models.Student;
 import resources.CourseSingleton;
 import views.loaders.WindowStudentRegistrationModal;
-import views.loaders.WindowSubjectsImport;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -19,7 +17,7 @@ import java.util.Map;
 public class StudentsViewController {
 
     @FXML
-    private Button btnRegister;
+    private Button importStudentsButton;
 
     private Course course;
     private ObservableList<Student> students;
@@ -44,7 +42,7 @@ public class StudentsViewController {
 
     @FXML
     private void close() {
-        Stage stage = (Stage) btnRegister.getScene().getWindow();
+        Stage stage = (Stage) importStudentsButton.getScene().getWindow();
         stage.close();
     }
 
