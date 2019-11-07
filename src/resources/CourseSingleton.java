@@ -6,7 +6,9 @@ public class CourseSingleton {
     private static CourseSingleton courseSingleton;
     private Course course;
 
-    private CourseSingleton() {}
+    private CourseSingleton() {
+        course = new Course();
+    }
 
     public static CourseSingleton getInstance() {
         if (courseSingleton == null)

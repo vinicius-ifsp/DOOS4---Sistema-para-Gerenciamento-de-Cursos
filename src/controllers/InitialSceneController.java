@@ -4,22 +4,38 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
+import models.Course;
+import resources.CourseSingleton;
+import utils.ListViewPropertyCellFactory;
+import views.loaders.MockSingleton;
 import views.loaders.WindowDashboard;
 import views.loaders.WindowInitialScreenModal;
 
-public class InitialSceneController {
-    ObservableList<String> items = FXCollections.observableArrayList (
-            "Análise e Desenvolimento de Sistemas", "Técnico em Informática", "Sistemas de Computação");
-    @FXML private ListView<String> listCourses;
+import java.util.Iterator;
 
-    @FXML void initialize() {
-        listCourses.setItems(items);
+public class InitialSceneController {
+    @FXML private ListView<Course> listCourses;
+
+    private ObservableList<Course> courses;
+
+    @FXML
+    private void initialize() {
+        Iterator<Course> coursesIt = MockSingleton.getInstance().getCourses();
+        courses = FXCollections.observableArrayList();
+        while(coursesIt.hasNext())
+            courses.add(coursesIt.next());
+        listCourses.setItems(courses);
+        listCourses.setCellFactory(new ListViewPropertyCellFactory<>(Course::getName));
     }
 
     @FXML
     private void openCourse() {
-        WindowDashboard windowDashboard = new WindowDashboard();
-        windowDashboard.show();
+        Course selectedCourse = listCourses.getSelectionModel().getSelectedItem();
+        if (selectedCourse != null) {
+            CourseSingleton.getInstance().setCourse(selectedCourse);
+            WindowDashboard windowDashboard = new WindowDashboard();
+            windowDashboard.show();
+        }
     }
 
     @FXML
@@ -27,12 +43,4 @@ public class InitialSceneController {
         WindowInitialScreenModal windowInitialScreenModal = new WindowInitialScreenModal();
         windowInitialScreenModal.show();
     }
-
-
-
-
-    /*public void setCourses(ListView<String> courses, FXCollections items) {
-        this.courses = courses;
-        courses.setItems((ObservableList<String>) items);
-    }*/
 }
