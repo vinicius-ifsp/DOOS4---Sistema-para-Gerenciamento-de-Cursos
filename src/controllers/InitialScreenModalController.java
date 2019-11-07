@@ -8,7 +8,7 @@ import models.Course;
 import models.Discipline;
 import resources.CourseSingleton;
 import views.loaders.MockSingleton;
-import views.loaders.WindowSubjectsImport;
+import views.loaders.WindowDisciplineRegister;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -63,8 +63,8 @@ public class InitialScreenModalController {
     @FXML
     private void openWindowAddDiscipline() {
         CourseSingleton.getInstance().setCourse(course);
-        WindowSubjectsImport windowSubjectsImport = new WindowSubjectsImport(getDisciplinesExists());
-        windowSubjectsImport.show();
+        WindowDisciplineRegister windowDisciplineRegister = new WindowDisciplineRegister(getDisciplinesExists());
+        windowDisciplineRegister.show();
     }
 
     private boolean isFormValid() {

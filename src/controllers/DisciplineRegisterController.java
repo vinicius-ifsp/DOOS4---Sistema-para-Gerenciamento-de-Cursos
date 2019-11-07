@@ -1,9 +1,16 @@
 package controllers;
 
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.stage.Stage;
+import javafx.util.Callback;
+import models.CheckBox;
 import models.Course;
 import models.Discipline;
 import resources.CourseSingleton;
@@ -13,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class SubjectsImportController {
+public class DisciplineRegisterController {
     @FXML
     private TextField txtName;
     @FXML
@@ -24,6 +31,29 @@ public class SubjectsImportController {
     private Button btnCancel;
 
     private List<Discipline> disciplines;
+
+
+    @FXML
+    private ListView<CheckBox> listCourses;
+
+
+    @FXML void initialize(){
+        CheckBox ap1 = new CheckBox(new Discipline("1", "Algoritmos e Programação I", 100.00), false);
+        CheckBox ap2 = new CheckBox(new Discipline("2", "Algoritmos e Programação II", 100.00), false);
+        CheckBox bd1 = new CheckBox(new Discipline("3", "Banco de Dados I", 66.66), false);
+        CheckBox bd2 = new CheckBox(new Discipline("4", "Banco de Dados II", 66.66), false);
+        CheckBox poo = new CheckBox(new Discipline("5", "Programação Orientada a Objetos", 100.00), false);
+        CheckBox doo = new CheckBox(new Discipline("6", "Desenvolvimento Orientado a Objetos", 100.00), false);
+
+        ObservableList<CheckBox> items = FXCollections.observableArrayList (ap1, ap2, poo, doo, bd1, bd2);
+
+        listCourses.setCellFactory(CheckBoxListCell.forListView(new Callback<CheckBox, ObservableValue<Boolean>>() {
+            @Override
+            public ObservableValue<Boolean> call(CheckBox s) {
+                return s.onProperty();
+            }
+        }));
+    }
 
     @FXML
     private void close() {

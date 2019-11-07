@@ -1,3 +1,4 @@
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,7 +9,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("views/FXML/SubjectsView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("views/FXML/DisciplinesView.fxml"));
         primaryStage.setTitle("iCollege");
         primaryStage.setScene(new Scene(root));
         primaryStage.resizableProperty().setValue(Boolean.FALSE);

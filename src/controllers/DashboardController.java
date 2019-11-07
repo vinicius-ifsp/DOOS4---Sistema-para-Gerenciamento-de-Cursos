@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 import resources.CourseSingleton;
 import views.loaders.MockSingleton;
 import views.loaders.WindowStudentsView;
-import views.loaders.WindowSubjectsView;
+import views.loaders.WindowDisciplinesView;
 
 public class DashboardController {
     @FXML
@@ -24,8 +24,8 @@ public class DashboardController {
 
     @FXML
     private void openDisciplines() {
-        WindowSubjectsView windowSubjectsView = new WindowSubjectsView();
-        windowSubjectsView.show();
+        WindowDisciplinesView windowDisciplinesView = new WindowDisciplinesView();
+        windowDisciplinesView.show();
     }
 
     @FXML

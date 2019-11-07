@@ -3,19 +3,18 @@ package controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import models.Course;
 import models.Discipline;
 import resources.CourseSingleton;
 import utils.ListViewPropertyCellFactory;
-import views.loaders.WindowSubjectsImport;
+import views.loaders.WindowDisciplineRegister;
 
 import java.util.Iterator;
 import java.util.Map;
 
-public class SubjectsViewController {
+public class DisciplineViewController {
     @FXML private ListView<Discipline> subjectsList;
 
     private Course course;
@@ -35,8 +34,8 @@ public class SubjectsViewController {
 
     @FXML
     private void openRegisterModal() {
-        WindowSubjectsImport windowSubjectsImport = new WindowSubjectsImport(disciplines.iterator());
-        windowSubjectsImport.show();
+        WindowDisciplineRegister windowDisciplineRegister = new WindowDisciplineRegister(disciplines.iterator());
+        windowDisciplineRegister.show();
     }
 
     @FXML
