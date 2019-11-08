@@ -18,12 +18,12 @@
     -fx-background-color: #1157CD;
 }
 
-#btnRegisterSubject{
+#btnRegisterDiscipline{
     -fx-background-color:  #9640C8;
     -fx-cursor: hand;
 }
 
-#btnRegisterSubject:hover{
+#btnRegisterDiscipline:hover{
     -fx-background-color: #741DA6;
 }
 

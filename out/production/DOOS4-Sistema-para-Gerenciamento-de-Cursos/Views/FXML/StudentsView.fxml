@@ -6,7 +6,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #4d4d4d;" stylesheets="@../../css/design.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StudentsViewController">
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #4d4d4d;" stylesheets="@/css/design.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StudentsViewController">
    <children>
 
            <Pane layoutX="-1.0" prefHeight="41.0" prefWidth="999.0" style="-fx-background-color: #323232; -fx-effect: dropshadow(gaussian, #000000, 10, 0, 0, 0);">
