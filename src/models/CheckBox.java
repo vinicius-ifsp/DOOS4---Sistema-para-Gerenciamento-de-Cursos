@@ -25,4 +25,12 @@ public class CheckBox {
         this.onProperty().set(on);
     }
 
+    @Override
+    public String toString() {
+        return discipline.getName();
+    }
+
+    public Discipline getDiscipline() {
+        return discipline;
+    }
 }
