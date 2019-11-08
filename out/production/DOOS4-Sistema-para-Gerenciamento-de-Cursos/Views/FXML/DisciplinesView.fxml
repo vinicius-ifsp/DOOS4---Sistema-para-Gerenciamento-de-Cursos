@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane alignment="center" hgap="10" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="688.0" prefWidth="999.0" vgap="10" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SubjectsViewController">
+<GridPane alignment="center" hgap="10" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="688.0" prefWidth="999.0" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DisciplinesViewController">
     <columnConstraints>
         <ColumnConstraints />
     </columnConstraints>
@@ -25,22 +26,22 @@
                 <Pane layoutX="32.0" layoutY="428.0" prefHeight="220.0" prefWidth="274.0" style="-fx-background-color: #DCDCDC; -fx-background-radius: 5px;" styleClass="border" />
                 <Pane layoutX="32.0" layoutY="169.0" prefHeight="248.0" prefWidth="566.0" style="-fx-background-color: #DCDCDC; -fx-background-radius: 5px;" styleClass="border" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="402.0" />
                 <Pane layoutX="319.0" layoutY="428.0" prefHeight="220.0" prefWidth="279.0" style="-fx-background-color: #DCDCDC; -fx-background-radius: 5px;" styleClass="border" />
-                <Button fx:id="btnRegisterSubject" layoutX="662.0" layoutY="616.0" mnemonicParsing="false" onMouseClicked="#openRegisterModal" prefHeight="34.0" prefWidth="312.0" style="-fx-background-radius: 3px;" stylesheets="@../../css/design.css" text="Cadastrar Disciplina" textAlignment="CENTER" textFill="WHITE">
+                <Button fx:id="btnRegisterDiscipline" layoutX="662.0" layoutY="616.0" mnemonicParsing="false" onMouseClicked="#openRegisterModal" prefHeight="34.0" prefWidth="312.0" style="-fx-background-radius: 3px;" stylesheets="@../../css/design.css" text="Cadastrar Disciplina" textAlignment="CENTER" textFill="WHITE">
                     <font>
                         <Font name="Arial Black" size="15.0" />
                     </font>
                 </Button>
-                <TextField layoutX="662.0" layoutY="186.0" prefHeight="33.0" prefWidth="187.0" />
-                <TextField layoutX="855.0" layoutY="186.0" prefHeight="33.0" prefWidth="77.0" />
-                <Button layoutX="946.0" layoutY="193.0" minHeight="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="18.0" style="-fx-shape: &quot;M495,466.2L377.2,348.4c29.2-35.6,46.8-81.2,46.8-130.9C424,103.5,331.5,11,217.5,11C103.4,11,11,103.5,11,217.5   S103.4,424,217.5,424c49.7,0,95.2-17.5,130.8-46.7L466.1,495c8,8,20.9,8,28.9,0C503,487.1,503,474.1,495,466.2z M217.5,382.9   C126.2,382.9,52,308.7,52,217.5S126.2,52,217.5,52C308.7,52,383,126.3,383,217.5S308.7,382.9,217.5,382.9z&quot;; -fx-cursor: hand;" />
+                <TextField fx:id="txtName" layoutX="662.0" layoutY="186.0" prefHeight="33.0" prefWidth="187.0" />
+                <TextField fx:id="txtCode" layoutX="855.0" layoutY="186.0" prefHeight="33.0" prefWidth="77.0" />
+                <Button layoutX="946.0" layoutY="193.0" minHeight="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="18.0" onMouseClicked="#searchStudent" style="-fx-shape: &quot;M495,466.2L377.2,348.4c29.2-35.6,46.8-81.2,46.8-130.9C424,103.5,331.5,11,217.5,11C103.4,11,11,103.5,11,217.5   S103.4,424,217.5,424c49.7,0,95.2-17.5,130.8-46.7L466.1,495c8,8,20.9,8,28.9,0C503,487.1,503,474.1,495,466.2z M217.5,382.9   C126.2,382.9,52,308.7,52,217.5S126.2,52,217.5,52C308.7,52,383,126.3,383,217.5S308.7,382.9,217.5,382.9z&quot;; -fx-cursor: hand;" />
                 <Label layoutX="662.0" layoutY="159.0" text="Nome" textFill="WHITE" />
                 <Label layoutX="855.0" layoutY="159.0" text="Código" textFill="WHITE" />
                 <Rectangle arcHeight="3.0" arcWidth="1.0" fill="WHITE" height="481.0" layoutX="631.0" layoutY="169.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1.0" />
-            <ListView fx:id="subjectsList" layoutX="654.0" layoutY="238.0" prefHeight="367.0" prefWidth="320.0" style="-fx-font-size: 12px;" stylesheets="@../../css/SubjectsListviewDesign.css" />
+            <ListView fx:id="disciplinesList" layoutX="654.0" layoutY="238.0" prefHeight="367.0" prefWidth="320.0" style="-fx-font-size: 12px;" stylesheets="@../../css/SubjectsListviewDesign.css" />
             <Pane layoutX="-1.0" prefHeight="41.0" prefWidth="999.0" style="-fx-background-color: #323232; -fx-effect: dropshadow(gaussian, #000000, 10, 0, 0, 0);">
                <children>
                           <Button layoutX="14.0" layoutY="8.0" minHeight="-Infinity" mnemonicParsing="false" onMouseClicked="#close" prefHeight="25.0" prefWidth="39.0" style="-fx-shape: &quot;M10.273,5.009c0.444-0.444,1.143-0.444,1.587,0c0.429,0.429,0.429,1.143,0,1.571l-8.047,8.047h26.554c0.619,0,1.127,0.492,1.127,1.111c0,0.619-0.508,1.127-1.127,1.127H3.813l8.047,8.032c0.429,0.444,0.429,1.159,0,1.587c-0.444,0.444-1.143,0.444-1.587,0l-9.952-9.952c-0.429-0.429-0.429-1.143,0-1.571L10.273,5.009z&quot;;" />
-                  <Label fx:id="courseName" layoutX="727.0" layoutY="10.0" text="Análise e Desenvolvimento de Sistemas" textFill="WHITE">
+                  <Label fx:id="courseName" layoutX="727.0" layoutY="10.0" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>

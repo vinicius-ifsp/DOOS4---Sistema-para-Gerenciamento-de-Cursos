@@ -66,6 +66,10 @@ public class Student {
         this.course = course;
     }
 
+    public String getPpc() {
+        return course == null ? "" : course.getPpc();
+    }
+
     @Override
     public String toString() {
         return "Student{" +
