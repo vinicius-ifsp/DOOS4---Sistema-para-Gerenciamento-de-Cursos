@@ -2,15 +2,20 @@ package controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import models.Course;
 import models.Student;
 import resources.CourseSingleton;
+import utils.DataLoader;
 import views.loaders.WindowStudentRegistrationModal;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -91,4 +96,24 @@ public class StudentsViewController {
         studentTable.setItems(filteredStudents);
         studentTable.refresh();
     }
+
+
+    public void importStudents(ActionEvent actionEvent) throws IOException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+        File fileStudents = fileChooser.showOpenDialog(studentTable.getScene().getWindow());
+
+        if(fileStudents == null)
+            return;
+
+        try{
+            students = DataLoader.loadStudents(fileStudents);
+            studentTable.setItems(students);
+        } catch(IOException e){
+            throw (e);
+        }
+
+
+    }
+
 }
