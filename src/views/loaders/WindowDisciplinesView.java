@@ -18,8 +18,8 @@ public class WindowDisciplinesView {
             Stage stage = new Stage();
 
             stage.setScene(scene);
-//            stage.resizableProperty().setValue(Boolean.FALSE);
-//            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.resizableProperty().setValue(Boolean.FALSE);
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (Exception e){
             e.printStackTrace();
