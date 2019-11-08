@@ -63,7 +63,7 @@ public class InitialScreenModalController {
     @FXML
     private void openWindowAddDiscipline() {
         CourseSingleton.getInstance().setCourse(course);
-        WindowDisciplineRegister windowDisciplineRegister = new WindowDisciplineRegister(getDisciplinesExists());
+        WindowDisciplineRegister windowDisciplineRegister = new WindowDisciplineRegister(null, getDisciplinesExists());
         windowDisciplineRegister.show();
     }
 

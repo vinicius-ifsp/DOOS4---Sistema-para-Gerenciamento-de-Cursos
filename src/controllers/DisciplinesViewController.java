@@ -17,7 +17,8 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class DisciplinesViewController {
-    @FXML private ListView<Discipline> disciplinesList;
+    @FXML
+    private ListView<Discipline> disciplinesList;
     @FXML
     private Label courseName;
     @FXML
@@ -44,8 +45,12 @@ public class DisciplinesViewController {
 
     @FXML
     private void openRegisterModal() {
-        WindowDisciplineRegister windowDisciplineRegister = new WindowDisciplineRegister(disciplines.iterator());
+        Discipline discipline = new Discipline();
+        WindowDisciplineRegister windowDisciplineRegister = new WindowDisciplineRegister(discipline, disciplines.iterator());
         windowDisciplineRegister.show();
+
+        if (discipline.getCode() != null)
+            disciplines.add(discipline);
     }
 
     @FXML

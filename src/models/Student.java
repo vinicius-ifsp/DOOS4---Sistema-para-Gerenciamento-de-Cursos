@@ -1,10 +1,14 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Student {
     private int semIngresso, semAtual, anoIngresso;
     private String prontuario, nome;
 
     private Course course;
+    private List<Commentary> comments = new ArrayList<>();
 
     public Student() {
     }
@@ -64,6 +68,11 @@ public class Student {
 
     public void setCourse(Course course) {
         this.course = course;
+    }
+
+    public void addCommentary(Commentary commentary) {
+        commentary.setStudent(this);
+        comments.add(commentary);
     }
 
     public String getPpc() {
