@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
@@ -11,10 +12,13 @@
            <Pane layoutX="-1.0" prefHeight="41.0" prefWidth="999.0" style="-fx-background-color: #323232; -fx-effect: dropshadow(gaussian, #000000, 10, 0, 0, 0);">
               <children>
                  <Button layoutX="14.0" layoutY="8.0" minHeight="-Infinity" mnemonicParsing="false" onMouseClicked="#close" prefHeight="25.0" prefWidth="39.0" style="-fx-shape: &quot;M10.273,5.009c0.444-0.444,1.143-0.444,1.587,0c0.429,0.429,0.429,1.143,0,1.571l-8.047,8.047h26.554c0.619,0,1.127,0.492,1.127,1.111c0,0.619-0.508,1.127-1.127,1.127H3.813l8.047,8.032c0.429,0.444,0.429,1.159,0,1.587c-0.444,0.444-1.143,0.444-1.587,0l-9.952-9.952c-0.429-0.429-0.429-1.143,0-1.571L10.273,5.009z&quot;;" />
-                 <Label fx:id="courseName" layoutX="727.0" layoutY="10.0" text="Análise e Desenvolvimento de Sistemas" textFill="WHITE">
+                 <Label fx:id="courseName" alignment="TOP_RIGHT" layoutX="462.0" layoutY="10.0" prefHeight="20.0" prefWidth="537.0" text="Análise e Desenvolvimento de Sistemas" textAlignment="CENTER" textFill="WHITE">
                     <font>
                        <Font name="System Bold" size="14.0" />
                     </font>
+               <padding>
+                  <Insets right="20.0" />
+               </padding>
                  </Label>
               </children>
            </Pane>
