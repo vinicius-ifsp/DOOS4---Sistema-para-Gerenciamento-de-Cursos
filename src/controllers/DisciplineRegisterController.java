@@ -16,9 +16,7 @@ import models.Discipline;
 import resources.CourseSingleton;
 import views.loaders.MockSingleton;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 public class DisciplineRegisterController {
     @FXML
@@ -30,30 +28,23 @@ public class DisciplineRegisterController {
     @FXML
     private Button btnCancel;
 
-    private List<Discipline> disciplines;
+    @FXML
+    private ListView<CheckBox> checkBoxListView;
+
+    private Discipline discipline;
+    private ObservableList<CheckBox> disciplines = FXCollections.observableArrayList();
 
     @FXML
-    private ListView<CheckBox> listCourses;
-
-
-    @FXML void initialize(){
-        CheckBox ap1 = new CheckBox(new Discipline("1", "Algoritmos e Programação I", 100.00), false);
-        CheckBox ap2 = new CheckBox(new Discipline("2", "Algoritmos e Programação II", 100.00), false);
-        CheckBox bd1 = new CheckBox(new Discipline("3", "Banco de Dados I", 66.66), false);
-        CheckBox bd2 = new CheckBox(new Discipline("4", "Banco de Dados II", 66.66), false);
-        CheckBox poo = new CheckBox(new Discipline("5", "Programação Orientada a Objetos", 100.00), false);
-        CheckBox doo = new CheckBox(new Discipline("6", "Desenvolvimento Orientado a Objetos", 100.00), false);
-
-        ObservableList<CheckBox> items = FXCollections.observableArrayList (ap1, ap2, poo, doo, bd1, bd2);
-
-        listCourses.setCellFactory(CheckBoxListCell.forListView(new Callback<CheckBox, ObservableValue<Boolean>>() {
+    void initialize() {
+        checkBoxListView.setCellFactory(CheckBoxListCell.forListView(new Callback<CheckBox, ObservableValue<Boolean>>() {
             @Override
             public ObservableValue<Boolean> call(CheckBox s) {
                 return s.onProperty();
             }
         }));
+        checkBoxListView.setItems(disciplines);
     }
-  
+
     @FXML
     private void close() {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
@@ -67,22 +58,33 @@ public class DisciplineRegisterController {
             // TODO show msg in invalid fields
             return;
         }
-
         Course course = CourseSingleton.getInstance().getCourse();
         String code = txtCode.getText();
         if (!course.hasDiscipline(code)) {
-            Discipline discipline = new Discipline(code, txtName.getText(),
-                    Double.parseDouble(txtWorkload.getText()));
-            System.out.println(discipline);
-            System.out.println("Course name: " + course.getName());
-
+            if (discipline == null) {
+                discipline = new Discipline(code, txtName.getText(),
+                        Double.parseDouble(txtWorkload.getText()));
+            } else {
+                discipline.setCode(code);
+                discipline.setName(txtName.getText());
+                discipline.setWorkload(Double.parseDouble(txtWorkload.getText()));
+            }
+            setDependencies(discipline);
             course.addDiscipline(discipline);
             // TODO Msg de Success
             close();
         } else {
             // TODO show msg discipline already registered
         }
+    }
 
+    private void setDependencies(Discipline discipline) {
+        Iterator<CheckBox> itCheckBox = disciplines.iterator();
+        while (itCheckBox.hasNext()) {
+            CheckBox checkBox = itCheckBox.next();
+            if (checkBox.isOn())
+                discipline.addDependency(checkBox.getDiscipline());
+        }
     }
 
     private boolean isFormValid() {
@@ -90,8 +92,13 @@ public class DisciplineRegisterController {
     }
 
     public void setDisciplines(Iterator<Discipline> disciplinesIt) {
-        disciplines = new ArrayList<>();
+        disciplines = FXCollections.observableArrayList();
         while (disciplinesIt.hasNext())
-            disciplines.add(disciplinesIt.next());
+            disciplines.add(new CheckBox(disciplinesIt.next(), false));
+        checkBoxListView.setItems(disciplines); // TODO ver com o Lucas pq isso é necessario
+    }
+
+    public void setDiscipline(Discipline discipline) {
+        this.discipline = discipline;
     }
 }

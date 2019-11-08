@@ -20,7 +20,7 @@ public class WindowDisciplinesView {
             stage.setScene(scene);
             stage.resizableProperty().setValue(Boolean.FALSE);
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.showAndWait();
+            stage.show();
         } catch (Exception e){
             e.printStackTrace();
         }

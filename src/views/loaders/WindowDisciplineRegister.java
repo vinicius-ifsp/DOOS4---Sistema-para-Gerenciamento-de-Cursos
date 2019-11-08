@@ -11,9 +11,11 @@ import models.Discipline;
 import java.util.Iterator;
 
 public class WindowDisciplineRegister {
+    private Discipline discipline;
     private Iterator<Discipline> disciplinesIt;
 
-    public WindowDisciplineRegister(Iterator<Discipline> disciplinesIt) {
+    public WindowDisciplineRegister(Discipline discipline, Iterator<Discipline> disciplinesIt) {
+        this.discipline = discipline;
         this.disciplinesIt = disciplinesIt;
     }
 
@@ -27,6 +29,7 @@ public class WindowDisciplineRegister {
             Stage stage = new Stage();
 
             DisciplineRegisterController sceneCtrl = loader.getController();
+            sceneCtrl.setDiscipline(discipline);
             sceneCtrl.setDisciplines(disciplinesIt);
 
             stage.setScene(scene);
