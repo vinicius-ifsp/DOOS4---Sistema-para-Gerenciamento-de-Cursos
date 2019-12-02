@@ -80,22 +80,6 @@ fx-alignment: CENTER;
   fx-alignment: CENTER;
 }
 
-.table-view > .virtual-flow > .scroll-bar:vertical,
-.table-view > .virtual-flow > .scroll-bar:vertical > .track,
-.table-view > .virtual-flow > .scroll-bar:vertical > .track-background,
-.table-view > .virtual-flow > .scroll-bar:horizontal,
-.table-view > .virtual-flow > .scroll-bar:horizontal > .track,
-.table-view > .virtual-flow > .scroll-bar:horizontal > .track-background {
-    -fx-background-color: transparent;
-}.table-view > .virtual-flow > .scroll-bar > .increment-button,
-.table-view > .virtual-flow > .scroll-bar > .decrement-button{
-    -fx-text-fill: #CFCFCF;
-}.scroll-bar:horizontal .thumb,
-.scroll-bar:vertical .thumb{
-    -fx-background-color: derive(-fx-primary, 60%);
-    -fx-border-color: transparent;
-    -fx-background-radius: 5em;
-}
 
 .table-row-cell:selected {
     -fx-background-color: #1157CD;
