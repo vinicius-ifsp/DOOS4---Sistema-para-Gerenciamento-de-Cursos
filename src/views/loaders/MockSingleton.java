@@ -3,6 +3,7 @@ package views.loaders;
 import models.Course;
 import models.Discipline;
 import models.Student;
+import models.StudentStatus;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -78,11 +79,11 @@ public class MockSingleton {
 
 
         Student vinicius = new Student(1, 4, 2018, "3002454",
-                "Vinicius Luiz da Silva", null);
+                "Vinicius Luiz da Silva", null, StudentStatus.GREEN);
         Student gui = new Student(1, 4, 2018, "3002412",
-                "Guilherme Sigoli", null);
+                "Guilherme Sigoli", null, StudentStatus.YELLOW);
         Student peco = new Student(1, 4, 2018, "3001221",
-                "Pedro Cabalero", null);
+                "Pedro Cabalero", null, StudentStatus.RED);
 
         ads.addStudent(peco);
         bsi.addStudent(gui);

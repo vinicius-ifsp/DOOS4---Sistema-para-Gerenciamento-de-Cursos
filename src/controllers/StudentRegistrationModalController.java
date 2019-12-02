@@ -39,7 +39,7 @@ public class StudentRegistrationModalController {
         Course course = CourseSingleton.getInstance().getCourse();
         if (!course.hasStudent(txtProntuario.getText())) {
             Student student = new Student(Integer.parseInt(txtIngressSemester.getText()), Integer.parseInt(txtCurrentSemester.getText()),
-                    Integer.parseInt(txtIngressYear.getText()), txtProntuario.getText(), txtName.getText(), null);
+                    Integer.parseInt(txtIngressYear.getText()), txtProntuario.getText(), txtName.getText(), null, null);
             course.addStudent(student);
 
             // TODO Msg de Success

@@ -6,6 +6,7 @@ import java.util.List;
 public class Student {
     private int semIngresso, semAtual, anoIngresso;
     private String prontuario, nome;
+    private StudentStatus studentStatus;
 
     private Course course;
     private List<Commentary> comments = new ArrayList<>();
@@ -13,14 +14,19 @@ public class Student {
     public Student() {
     }
 
-    public Student(int semIngresso, int semAtual, int anoIngresso, String prontuario, String nome, Course course) {
+    public Student(int semIngresso, int semAtual, int anoIngresso, String prontuario, String nome, Course course, StudentStatus studentStatus) {
         this.semIngresso = semIngresso;
         this.semAtual = semAtual;
         this.anoIngresso = anoIngresso;
         this.prontuario = prontuario;
         this.nome = nome;
         this.course = course;
+        this.studentStatus = studentStatus;
     }
+
+    public StudentStatus getStudentStatus() { return studentStatus; }
+
+    public void setStudentStatus(StudentStatus studentStatus) { this.studentStatus = studentStatus; }
 
     public int getSemIngresso() {
         return semIngresso;
@@ -88,6 +94,7 @@ public class Student {
                 ", prontuario='" + prontuario + '\'' +
                 ", nome='" + nome + '\'' +
                 ", course=" + (course != null ? course.getName() : null) +
+                ", studentStatus = " + studentStatus +
                 '}';
     }
 }

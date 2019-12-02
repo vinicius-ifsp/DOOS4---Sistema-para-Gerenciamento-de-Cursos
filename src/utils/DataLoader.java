@@ -31,7 +31,7 @@ public class DataLoader {
                         break;
                     }
                 }
-                students.add(new Student(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2]), data[3], data[4], course));
+                students.add(new Student(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2]), data[3], data[4], course, null));
             }
             return students;
         } catch (IOException e) {

@@ -30,7 +30,7 @@ public class StudentsViewController {
     @FXML
     private TableColumn<Student, String> cProntuario;
     @FXML
-    private TableColumn<Student, String> cPPC;
+    private TableColumn<Student, String> cStatus;
     @FXML
     private Label courseName;
     @FXML
@@ -45,7 +45,7 @@ public class StudentsViewController {
     private void initialize() {
         cName.setCellValueFactory(new PropertyValueFactory<>("nome"));
         cProntuario.setCellValueFactory(new PropertyValueFactory<>("prontuario"));
-        cPPC.setCellValueFactory(new PropertyValueFactory<>("ppc"));
+        cStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
 
         course = CourseSingleton.getInstance().getCourse();
         courseName.setText(course.getName());
