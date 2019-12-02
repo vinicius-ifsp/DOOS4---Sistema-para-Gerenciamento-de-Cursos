@@ -18,12 +18,12 @@
     -fx-background-color: #1157CD;
 }
 
-#btnRegisterSubject{
+#btnRegisterDiscipline{
     -fx-background-color:  #9640C8;
     -fx-cursor: hand;
 }
 
-#btnRegisterSubject:hover{
+#btnRegisterDiscipline:hover{
     -fx-background-color: #741DA6;
 }
 
@@ -45,15 +45,56 @@
 }
 
 .table-row-cell{
-    -fx-background-color: -fx-table-cell-border-color, #4D4D4D;
+    -fx-background-color: -fx-table-cell-border-color, #5c5c5c;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 1px;
+    -fx-text-fill: white;
+    -fx-border-width: 1;
+    fx-alignment: CENTER;
 }
 
 .table-row-cell:odd{
-    -fx-background-color: -fx-table-cell-border-color, #323232;
+    -fx-background-color: -fx-table-cell-border-color, #5c5c5c;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 1px;
+    -fx-text-fill: white;
+    -fx-border-width: 1;
+    fx-alignment: CENTER;
+}
+
+.table-cell{
+    -fx-text-fill: white;
+    fx-alignment: CENTER;
+}
+
+.table-cell .label{
+fx-alignment: CENTER;
+}
+
+.table-row-cell:empty {
+    -fx-background-color: transparent;
+}
+
+.table-view {
+  -fx-table-cell-border-color: transparent;
+  fx-alignment: CENTER;
+}
+
+.table-view > .virtual-flow > .scroll-bar:vertical,
+.table-view > .virtual-flow > .scroll-bar:vertical > .track,
+.table-view > .virtual-flow > .scroll-bar:vertical > .track-background,
+.table-view > .virtual-flow > .scroll-bar:horizontal,
+.table-view > .virtual-flow > .scroll-bar:horizontal > .track,
+.table-view > .virtual-flow > .scroll-bar:horizontal > .track-background {
+    -fx-background-color: transparent;
+}.table-view > .virtual-flow > .scroll-bar > .increment-button,
+.table-view > .virtual-flow > .scroll-bar > .decrement-button{
+    -fx-text-fill: #CFCFCF;
+}.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb{
+    -fx-background-color: derive(-fx-primary, 60%);
+    -fx-border-color: transparent;
+    -fx-background-radius: 5em;
 }
 
 .table-row-cell:selected {
@@ -70,4 +111,19 @@
 #importStudentsButton:hover{
     -fx-background-color:  #147488;
 
+}
+
+#redButton:focused{
+    -fx-border-color: white;
+    -fx-border-radius: 50px;
+}
+
+#yellowButton:focused{
+    -fx-border-color: white;
+    -fx-border-radius: 50px;
+}
+
+#greenButton:focused{
+    -fx-border-color: white;
+    -fx-border-radius: 50px;
 }
