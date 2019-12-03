@@ -73,18 +73,39 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Label layoutX="39.0" layoutY="191.0" text="Guilherme Sigoli">
+      <Label layoutX="46.0" layoutY="191.0" text="Guilherme Sigoli">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lStudentNumber" layoutX="38.0" layoutY="219.0" text="SC3002683" />
-      <Label layoutX="141.0" layoutY="219.0" text="Data de Ingresso:" />
-      <Label fx:id="lStudentEntry" layoutX="242.0" layoutY="219.0" text="02/02/2018" />
-      <Label layoutX="39.0" layoutY="244.0" text="Semestre Atual:" />
-      <Label fx:id="lStudentSemester" layoutX="127.0" layoutY="244.0" text="4" />
-      <Label layoutX="219.0" layoutY="244.0" text="Status:" />
-      <Label fx:id="lStudentStatus" layoutX="266.0" layoutY="244.0" text="Ruim" />
+      <Label fx:id="lStudentNumber" layoutX="44.0" layoutY="219.0" text="SC3002683">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+      <Label layoutX="147.0" layoutY="219.0" text="Data de Ingresso:">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+      <Label fx:id="lStudentEntry" layoutX="254.0" layoutY="219.0" text="02/02/2018">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+      <Label layoutX="42.0" layoutY="238.0" text="Semestre Atual:">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+      <Label fx:id="lStudentSemester" layoutX="144.0" layoutY="238.0" text="4">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+      <Label layoutX="226.0" layoutY="238.0" text="Status:">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+      <Label fx:id="lStudentStatus" layoutX="273.0" layoutY="238.0" text="Ruim">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
       <ListView layoutX="42.0" layoutY="307.0" prefHeight="100.0" prefWidth="310.0" />
       <Label layoutX="44.0" layoutY="289.0" text="Disciplinas Cursadas" />
       <Label layoutX="42.0" layoutY="407.0" text="Disciplinas Atrasadas" />
@@ -96,7 +117,10 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Label layoutX="38.0" layoutY="262.0" text="Previsão de Formação:" />
-      <Label fx:id="lStudentEstimate" layoutX="164.0" layoutY="262.0" text="2021" />
+      <Label layoutX="44.0" layoutY="262.0" text="Previsão de Formação:" />
+      <Label fx:id="lStudentEstimate" layoutX="170.0" layoutY="262.0" text="2021">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
    </children>
 </AnchorPane>
