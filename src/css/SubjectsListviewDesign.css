@@ -6,7 +6,6 @@
     -fx-padding: 5px ;
     -fx-background-radius: 3px;
     -fx-label-padding: 3px;
-    -fx-alignment: CENTER-RIGHT;
     -fx-background-color: transparent, -fx-background ;
     -fx-background-insets: 5px, 5px ;
 }
