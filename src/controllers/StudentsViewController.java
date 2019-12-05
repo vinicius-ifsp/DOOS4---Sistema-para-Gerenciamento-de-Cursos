@@ -9,6 +9,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import models.Course;
+import models.Discipline;
 import models.Student;
 import resources.CourseSingleton;
 import utils.DataLoader;
@@ -37,6 +38,28 @@ public class StudentsViewController {
     private TextField txtName;
     @FXML
     private TextField txtProntuario;
+    @FXML
+    private Label lStudentName;
+    @FXML
+    private Label lStudentNumber;
+    @FXML
+    private Label lStudentEntry;
+    @FXML
+    private Label lStudentSemester;
+    @FXML
+    private Label lStudentStatus;
+    @FXML
+    private Label lStudentEstimate;
+    @FXML
+    private ListView<Discipline> listAttendedDisciplines;
+    @FXML
+    private ListView<Discipline> listStudentLateDisciplines;
+    @FXML
+    private TextArea comentArea;
+    @FXML Button editStudent;
+    @FXML Button disciplinesSuggestionBtn;
+
+
 
     private Course course;
     private ObservableList<Student> students;
@@ -55,6 +78,10 @@ public class StudentsViewController {
             students.add(studentsIt.next().getValue());
 
         studentTable.setItems(students);
+
+        editStudent.setVisible(false);
+        comentArea.setVisible(false);
+        disciplinesSuggestionBtn.setVisible(false);
     }
 
     @FXML
@@ -114,6 +141,20 @@ public class StudentsViewController {
         }
 
 
+    }
+
+    private void formatToShow (Student student){
+        editStudent.setVisible(true);
+        comentArea.setVisible(false);
+        disciplinesSuggestionBtn.setVisible(true);
+        
+        lStudentName.setText(student.getNome());
+        lStudentNumber.setText(student.getProntuario());
+        lStudentEntry.setText(Integer.toString(student.getAnoIngresso()));
+        lStudentSemester.setText(Integer.toString(student.getSemAtual()));
+        lStudentEstimate.setText("2020");
+        lStudentStatus.setText("Ruim");
+        comentArea.setText("Muito Bom");
     }
 
 }

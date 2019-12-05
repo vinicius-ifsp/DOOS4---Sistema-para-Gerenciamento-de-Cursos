@@ -25,7 +25,7 @@
                 <Rectangle arcHeight="3.0" arcWidth="1.0" fill="WHITE" height="3.0" layoutX="32.0" layoutY="120.0" stroke="TRANSPARENT" strokeType="INSIDE" width="263.0" AnchorPane.leftAnchor="32.0" />
                 <Pane layoutX="32.0" layoutY="394.0" prefHeight="254.0" prefWidth="274.0" style="-fx-background-color: #DCDCDC; -fx-background-radius: 5px;" styleClass="border">
                <children>
-                  <ListView layoutX="14.0" layoutY="40.0" prefHeight="200.0" prefWidth="247.0" />
+                  <ListView fx:id="listLateStudents" layoutX="14.0" layoutY="40.0" prefHeight="200.0" prefWidth="247.0" />
                   <Label layoutX="14.0" layoutY="14.0" text="Estudantes Atrasados" textFill="#363636">
                      <font>
                         <Font name="System Bold" size="14.0" />
@@ -47,14 +47,15 @@
                   <Label fx:id="lDisciplineTime" layoutX="98.0" layoutY="77.0" text="138h" />
                   <Label layoutX="16.0" layoutY="108.0" text="Código:" />
                   <Label fx:id="lDisciplineCode" layoutX="69.0" layoutY="108.0" text="H23SC3" />
-                  <ListView layoutX="209.0" layoutY="46.0" prefHeight="137.0" prefWidth="337.0" />
-                  <Label layoutX="209.0" layoutY="30.0" text="Pré Requisitos" />
+                  <ListView fx:id="listDisciplineDependencies" layoutX="258.0" layoutY="46.0" prefHeight="137.0" prefWidth="288.0" />
+                  <Label layoutX="258.0" layoutY="27.0" text="Pré Requisitos" />
                   <Label layoutX="14.0" layoutY="137.0" prefHeight="18.0" prefWidth="107.0" text="Alunos Atrasados:" />
                   <Label fx:id="lDisciplineLateStudentQtn" layoutX="118.0" layoutY="138.0" text="33" />
+                  <Label fx:id="lDisciplineDependencies" layoutX="353.0" layoutY="27.0" />
                </children></Pane>
                 <Pane layoutX="319.0" layoutY="394.0" prefHeight="254.0" prefWidth="279.0" style="-fx-background-color: #DCDCDC; -fx-background-radius: 5px;" styleClass="border">
                <children>
-                  <ListView layoutX="12.0" layoutY="40.0" prefHeight="200.0" prefWidth="256.0" />
+                  <ListView fx:id="listRedStudents" layoutX="12.0" layoutY="40.0" prefHeight="200.0" prefWidth="256.0" />
                   <Label layoutX="14.0" layoutY="14.0" text="Estudantes com Status Ruim" textFill="#2c2c2c">
                      <font>
                         <Font name="System Bold" size="14.0" />

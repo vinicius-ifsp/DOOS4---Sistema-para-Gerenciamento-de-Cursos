@@ -73,12 +73,12 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Label layoutX="46.0" layoutY="191.0" text="Guilherme Sigoli">
+      <Label fx:id="lStudentName" layoutX="46.0" layoutY="191.0">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lStudentNumber" layoutX="44.0" layoutY="219.0" text="SC3002683">
+      <Label fx:id="lStudentNumber" layoutX="44.0" layoutY="219.0">
          <font>
             <Font size="13.0" />
          </font></Label>
@@ -86,7 +86,7 @@
          <font>
             <Font size="13.0" />
          </font></Label>
-      <Label fx:id="lStudentEntry" layoutX="254.0" layoutY="219.0" text="02/02/2018">
+      <Label fx:id="lStudentEntry" layoutX="254.0" layoutY="219.0">
          <font>
             <Font size="13.0" />
          </font></Label>
@@ -94,7 +94,7 @@
          <font>
             <Font size="13.0" />
          </font></Label>
-      <Label fx:id="lStudentSemester" layoutX="144.0" layoutY="238.0" text="4">
+      <Label fx:id="lStudentSemester" layoutX="144.0" layoutY="238.0">
          <font>
             <Font size="13.0" />
          </font></Label>
@@ -102,23 +102,23 @@
          <font>
             <Font size="13.0" />
          </font></Label>
-      <Label fx:id="lStudentStatus" layoutX="273.0" layoutY="238.0" text="Ruim">
+      <Label fx:id="lStudentStatus" layoutX="273.0" layoutY="238.0">
          <font>
             <Font size="13.0" />
          </font></Label>
-      <ListView layoutX="42.0" layoutY="307.0" prefHeight="100.0" prefWidth="310.0" />
+      <ListView fx:id="listAttendedDisciplines" layoutX="42.0" layoutY="307.0" prefHeight="100.0" prefWidth="310.0" />
       <Label layoutX="44.0" layoutY="289.0" text="Disciplinas Cursadas" />
       <Label layoutX="42.0" layoutY="407.0" text="Disciplinas Atrasadas" />
       <ListView layoutX="44.0" layoutY="428.0" prefHeight="100.0" prefWidth="310.0" />
       <TextArea fx:id="comentArea" layoutX="42.0" layoutY="592.0" prefHeight="58.0" prefWidth="310.0" />
       <Label layoutX="44.0" layoutY="575.0" text="Comentário" />
-      <Button layoutX="44.0" layoutY="537.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="310.0" style="-fx-background-color: #a2a2a2;" text="Ver sugestão de Disciplinas">
+      <Button fx:id="disciplinesSuggestionBtn" layoutX="44.0" layoutY="537.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="310.0" style="-fx-background-color: #a2a2a2;" text="Ver sugestão de Disciplinas">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
       <Label layoutX="44.0" layoutY="262.0" text="Previsão de Formação:" />
-      <Label fx:id="lStudentEstimate" layoutX="170.0" layoutY="262.0" text="2021">
+      <Label fx:id="lStudentEstimate" layoutX="170.0" layoutY="262.0">
          <font>
             <Font size="13.0" />
          </font></Label>
