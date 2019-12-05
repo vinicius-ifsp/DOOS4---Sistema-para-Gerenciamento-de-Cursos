@@ -18,12 +18,12 @@
     -fx-background-color: #1157CD;
 }
 
-#btnRegisterSubject{
+#btnRegisterDiscipline{
     -fx-background-color:  #9640C8;
     -fx-cursor: hand;
 }
 
-#btnRegisterSubject:hover{
+#btnRegisterDiscipline:hover{
     -fx-background-color: #741DA6;
 }
 
@@ -45,16 +45,42 @@
 }
 
 .table-row-cell{
-    -fx-background-color: -fx-table-cell-border-color, #4D4D4D;
+    -fx-background-color: -fx-table-cell-border-color, #5c5c5c;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 1px;
+    -fx-text-fill: white;
+    -fx-border-width: 1;
+    fx-alignment: CENTER;
 }
 
 .table-row-cell:odd{
-    -fx-background-color: -fx-table-cell-border-color, #323232;
+    -fx-background-color: -fx-table-cell-border-color, #5c5c5c;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 1px;
+    -fx-text-fill: white;
+    -fx-border-width: 1;
+    fx-alignment: CENTER;
 }
+
+.table-cell{
+    -fx-text-fill: white;
+    fx-alignment: CENTER;
+}
+
+.table-cell .label{
+fx-alignment: CENTER;
+}
+
+.table-row-cell:empty {
+    -fx-background-color: transparent;
+}
+
+.table-view {
+  -fx-table-cell-border-color: transparent;
+  fx-alignment: CENTER;
+}
+
+
 
 .table-row-cell:selected {
     -fx-background-color: #1157CD;
@@ -70,4 +96,19 @@
 #importStudentsButton:hover{
     -fx-background-color:  #147488;
 
+}
+
+#redButton:focused{
+    -fx-border-color: white;
+    -fx-border-radius: 50px;
+}
+
+#yellowButton:focused{
+    -fx-border-color: white;
+    -fx-border-radius: 50px;
+}
+
+#greenButton:focused{
+    -fx-border-color: white;
+    -fx-border-radius: 50px;
 }
