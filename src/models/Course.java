@@ -1,8 +1,6 @@
 package models;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 
 public class Course {
@@ -16,7 +14,7 @@ public class Course {
     public Course() {
     }
 
-    public Course(int code, int periodQty, String name, String ppc, double workload,  HashMap<String, Discipline> disciplines) {
+    public Course(int code, int periodQty, String name, String ppc, double workload, HashMap<String, Discipline> disciplines) {
         this.code = code;
         this.periodQty = periodQty;
         this.name = name;
@@ -35,13 +33,22 @@ public class Course {
         return disciplines.containsKey(code);
     }
 
-   public Iterator<Map.Entry<String, Discipline>> getDisciplines() {
+    public Iterator<Map.Entry<String, Discipline>> getDisciplines() {
         return disciplines.entrySet().iterator();
     }
 
     public void addStudent(Student student) {
         student.setCourse(this);
         students.put(student.getProntuario(), student);
+    }
+
+    public void addStudentsClass(List<StudentClass> studentClassList) {
+        for (StudentClass studentClass : studentClassList) {
+            if (disciplines.get(studentClass.getCodigo()) != null) {
+                Student s = students.get(studentClass.getProntuario());
+                s.addDisciplineRemaining(disciplines.get(studentClass.getCodigo()));
+            }
+        }
     }
 
     public boolean hasStudent(String prontuario) {
@@ -54,6 +61,10 @@ public class Course {
 
     public Discipline getDiscipline(String code) {
         return disciplines.get(code);
+    }
+
+    public Student getStudent(String code) {
+        return students.get(code);
     }
 
     public int getCode() {
@@ -94,6 +105,15 @@ public class Course {
 
     public void setWorkload(double workload) {
         this.workload = workload;
+    }
+
+    public void setDisciplines(HashMap<String, Discipline> disciplines) {
+        this.disciplines = disciplines;
+    }
+
+    public void addStudents(List<Student> studentList) {
+        for (Student student : studentList)
+            addStudent(student);
     }
 
     @Override

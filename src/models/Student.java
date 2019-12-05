@@ -1,7 +1,6 @@
 package models;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Student {
     private int semIngresso, semAtual, anoIngresso;
@@ -9,6 +8,8 @@ public class Student {
 
     private Course course;
     private List<Commentary> comments = new ArrayList<>();
+    private List<Discipline> disciplines = new ArrayList<>();
+    private List<Discipline> disciplinesRemaining = new ArrayList<>();
 
     public Student() {
     }
@@ -20,6 +21,77 @@ public class Student {
         this.prontuario = prontuario;
         this.nome = nome;
         this.course = course;
+    }
+
+    public Student(int semIngresso, int anoIngresso, String prontuario, String nome, Course course) {
+        this.semIngresso = semIngresso;
+        // this.semAtual = semAtual;
+        this.anoIngresso = anoIngresso;
+        this.prontuario = prontuario;
+        this.nome = nome;
+        this.course = course;
+    }
+
+    public void addCommentary(Commentary commentary) {
+        commentary.setStudent(this);
+        comments.add(commentary);
+    }
+
+    public void addDiscipline(Discipline discipline) {
+
+    }
+
+    public String getPpc() {
+        return course == null ? "" : course.getPpc();
+    }
+
+
+    public void calculateTimeToConclusion() {
+//        Iterator<Map.Entry<String, Discipline>> courseDisciplines = course.getDisciplines();
+//        while (courseDisciplines.hasNext()) {
+//            Map.Entry<String, Discipline> disciplineEntry = courseDisciplines.next();
+//            if (!disciplines.contains(disciplineEntry))
+//                remaining.add(disciplineEntry.getValue());
+//        }
+
+        List<Discipline> remaining = new ArrayList<>(disciplinesRemaining);
+        Collections.sort(remaining, Comparator.comparingInt(Discipline::getModule));
+
+        int qtyRemainingSemester = 0;
+        int currentModule = -1;
+        int lastTimeConclusion = 0;
+        int newTimeConclusion;
+
+        for (Discipline discipline : remaining) {
+            if (discipline.getModule() < semAtual) {
+                if (discipline.getModule() != currentModule) {
+                    lastTimeConclusion = discipline.getTimeConclusionDependenciesInSemesters();
+                    qtyRemainingSemester += lastTimeConclusion + 1;
+                    currentModule = discipline.getModule();
+                } else if ((newTimeConclusion = discipline.getTimeConclusionDependenciesInSemesters()) > lastTimeConclusion) {
+                    qtyRemainingSemester += newTimeConclusion - lastTimeConclusion;
+                    lastTimeConclusion = newTimeConclusion;
+                }
+            }
+        }
+
+        if (qtyRemainingSemester == 0) {
+            qtyRemainingSemester = course.getPeriodQty() - semAtual;
+        } else {
+            qtyRemainingSemester += course.getPeriodQty() - semAtual;
+        }
+
+        System.out.println(qtyRemainingSemester);
+
+    }
+
+    public Student(String prontuario) {
+        this.prontuario = prontuario;
+    }
+
+    public void addDisciplineRemaining(Discipline d) {
+        d.addStudent(this);
+        disciplinesRemaining.add(d);
     }
 
     public int getSemIngresso() {
@@ -70,15 +142,6 @@ public class Student {
         this.course = course;
     }
 
-    public void addCommentary(Commentary commentary) {
-        commentary.setStudent(this);
-        comments.add(commentary);
-    }
-
-    public String getPpc() {
-        return course == null ? "" : course.getPpc();
-    }
-
     @Override
     public String toString() {
         return "Student{" +
@@ -90,4 +153,5 @@ public class Student {
                 ", course=" + (course != null ? course.getName() : null) +
                 '}';
     }
+
 }

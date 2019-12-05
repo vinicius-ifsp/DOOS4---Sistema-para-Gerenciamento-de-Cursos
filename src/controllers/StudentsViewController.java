@@ -12,11 +12,11 @@ import models.Course;
 import models.Student;
 import resources.CourseSingleton;
 import utils.DataLoader;
-import views.loaders.WindowStudentRegistrationModal;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 public class StudentsViewController {
@@ -39,7 +39,7 @@ public class StudentsViewController {
     private TextField txtProntuario;
 
     private Course course;
-    private ObservableList<Student> students;
+    private ObservableList<Student> studentObservableList;
 
     @FXML
     private void initialize() {
@@ -50,17 +50,11 @@ public class StudentsViewController {
         course = CourseSingleton.getInstance().getCourse();
         courseName.setText(course.getName());
         Iterator<Map.Entry<String, Student>> studentsIt = course.getStudents();
-        students = FXCollections.observableArrayList();
+        studentObservableList = FXCollections.observableArrayList();
         while (studentsIt.hasNext())
-            students.add(studentsIt.next().getValue());
+            studentObservableList.add(studentsIt.next().getValue());
 
-        studentTable.setItems(students);
-    }
-
-    @FXML
-    private void openRegisterModal() {
-        WindowStudentRegistrationModal windowStudentRegistrationModal = new WindowStudentRegistrationModal();
-        windowStudentRegistrationModal.show();
+        studentTable.setItems(studentObservableList);
     }
 
     @FXML
@@ -74,6 +68,7 @@ public class StudentsViewController {
         Student selectedStudent = studentTable.getSelectionModel().getSelectedItem();
         if (selectedStudent != null ) {
             // TODO populate panel left
+            selectedStudent.calculateTimeToConclusion();
         }
     }
 
@@ -83,9 +78,9 @@ public class StudentsViewController {
         String name = txtName.getText();
         String prontuario = txtProntuario.getText();
         if (name.equals("") && prontuario.equals("")) {
-            filteredStudents = students;
+            filteredStudents = studentObservableList;
         } else {
-            Iterator<Student> itStudent = students.iterator();
+            Iterator<Student> itStudent = studentObservableList.iterator();
             while (itStudent.hasNext()) {
                 Student student = itStudent.next();
                 if (student.getNome().toLowerCase().contains(name) || student.getProntuario().equalsIgnoreCase(prontuario))
@@ -107,13 +102,14 @@ public class StudentsViewController {
             return;
 
         try{
-            students = DataLoader.loadStudents(fileStudents);
-            studentTable.setItems(students);
+            List<Student> studentList = DataLoader.loadStudents(fileStudents);
+            course.addStudents(studentList);
+            studentObservableList.addAll(studentList);
+            studentTable.setItems(studentObservableList);
+            course.addStudentsClass(DataLoader.loadStudentClasses(null));
         } catch(IOException e){
             throw (e);
         }
-
-
     }
 
 }

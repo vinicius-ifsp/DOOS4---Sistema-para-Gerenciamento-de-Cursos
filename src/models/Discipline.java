@@ -6,10 +6,18 @@ public class Discipline {
     private String code;
     private String name;
     private double workload;
+    private int module;
     private Course course;
     private List<Discipline> dependencies = new ArrayList<>();
+    private List<Student> students = new ArrayList<>();
 
     public Discipline() {
+    }
+
+    public Discipline(String code, String name, int module) {
+        this.code = code;
+        this.name = name;
+        this.module = module;
     }
 
     public Discipline(String code, String name, double workload) {
@@ -21,6 +29,37 @@ public class Discipline {
     public void addDependency(Discipline discipline) {
         if (!dependencies.contains(discipline))
             dependencies.add(discipline);
+    }
+
+    public void addStudent(Student student) {
+        if (!students.contains(student))
+            students.add(student);
+    }
+
+
+
+    public int getTimeConclusionDependenciesInSemesters() {
+        int sum = 0;
+        for (Discipline dependency : dependencies) {
+            if (dependency.hasDependency()) {
+                sum += dependency.getTimeConclusionDependenciesInSemesters();
+            } else {
+                return 1;
+            }
+        }
+        return sum;
+    }
+
+    public boolean hasDependency() {
+        return dependencies.size() > 0 ? true : false;
+    }
+
+    public int getModule() {
+        return module;
+    }
+
+    public void setModule(int module) {
+        this.module = module;
     }
 
     public Iterator<Discipline> getDependencies() {
