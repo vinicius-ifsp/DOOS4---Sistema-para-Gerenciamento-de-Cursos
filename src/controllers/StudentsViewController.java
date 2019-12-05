@@ -147,7 +147,7 @@ public class StudentsViewController {
         editStudent.setVisible(true);
         comentArea.setVisible(false);
         disciplinesSuggestionBtn.setVisible(true);
-        
+
         lStudentName.setText(student.getNome());
         lStudentNumber.setText(student.getProntuario());
         lStudentEntry.setText(Integer.toString(student.getAnoIngresso()));

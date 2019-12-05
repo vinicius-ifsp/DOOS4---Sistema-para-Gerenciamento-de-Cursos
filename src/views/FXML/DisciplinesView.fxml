@@ -34,23 +34,23 @@
                </children></Pane>
                 <Pane layoutX="32.0" layoutY="169.0" prefHeight="201.0" prefWidth="566.0" style="-fx-background-color: #DCDCDC; -fx-background-radius: 5px;" styleClass="border" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="402.0">
                <children>
-                  <Button layoutX="451.0" layoutY="2.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Editar Disciplina" textFill="#ff9700">
+                  <Button fx:id="editDiscipline" layoutX="451.0" layoutY="2.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Editar Disciplina" textFill="#ff9700">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Button>
-                  <Label fx:id="lDisciplineName" layoutX="14.0" layoutY="46.0" text="Nome da Disciplina">
+                  <Label fx:id="lDisciplineName" layoutX="14.0" layoutY="46.0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
                   <Label layoutX="14.0" layoutY="77.0" text="Carga Horária:" />
-                  <Label fx:id="lDisciplineTime" layoutX="98.0" layoutY="77.0" text="138h" />
+                  <Label fx:id="lDisciplineTime" layoutX="98.0" layoutY="77.0" />
                   <Label layoutX="16.0" layoutY="108.0" text="Código:" />
-                  <Label fx:id="lDisciplineCode" layoutX="69.0" layoutY="108.0" text="H23SC3" />
+                  <Label fx:id="lDisciplineCode" layoutX="69.0" layoutY="108.0" />
                   <ListView fx:id="listDisciplineDependencies" layoutX="258.0" layoutY="46.0" prefHeight="137.0" prefWidth="288.0" />
                   <Label layoutX="258.0" layoutY="27.0" text="Pré Requisitos" />
                   <Label layoutX="14.0" layoutY="137.0" prefHeight="18.0" prefWidth="107.0" text="Alunos Atrasados:" />
-                  <Label fx:id="lDisciplineLateStudentQtn" layoutX="118.0" layoutY="138.0" text="33" />
+                  <Label fx:id="lDisciplineLateStudentQtn" layoutX="118.0" layoutY="138.0" />
                   <Label fx:id="lDisciplineDependencies" layoutX="353.0" layoutY="27.0" />
                </children></Pane>
                 <Pane layoutX="319.0" layoutY="394.0" prefHeight="254.0" prefWidth="279.0" style="-fx-background-color: #DCDCDC; -fx-background-radius: 5px;" styleClass="border">
