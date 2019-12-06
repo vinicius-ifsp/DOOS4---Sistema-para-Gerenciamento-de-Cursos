@@ -11,11 +11,6 @@ public class CourseSingleton {
 
     private CourseSingleton() {
         course = new Course();
-        try {
-            course.setDisciplines(DataLoader.loadDisciplines(null));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public static CourseSingleton getInstance() {
@@ -30,5 +25,10 @@ public class CourseSingleton {
 
     public void setCourse(Course course) {
         this.course = course;
+        try {
+            course.setDisciplines(DataLoader.loadDisciplines(null));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

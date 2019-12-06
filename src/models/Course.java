@@ -38,15 +38,21 @@ public class Course {
     }
 
     public void addStudent(Student student) {
-        student.setCourse(this);
-        students.put(student.getProntuario(), student);
+        if (!students.containsKey(student.getProntuario())) {
+            student.setCourse(this);
+            students.put(student.getProntuario(), student);
+        }
     }
 
-    public void addStudentsClass(List<StudentClass> studentClassList) {
-        for (StudentClass studentClass : studentClassList) {
-            if (disciplines.get(studentClass.getCodigo()) != null) {
-                Student s = students.get(studentClass.getProntuario());
-                s.addDisciplineRemaining(disciplines.get(studentClass.getCodigo()));
+    public void addRemainingDisciplines(List<StudentRemainingDiscipline> studentRemainingDisciplineList) {
+        for (StudentRemainingDiscipline discipline : studentRemainingDisciplineList) {
+            if (disciplines.get(discipline.getDisciplineCode()) != null) {
+                Student s = students.get(discipline.getStudentProntuario());
+                if (s.getProntuario().equals("3002412")) {
+                    System.out.println();
+                }
+                s.addRemainingDiscipline(
+                        new StudentRemainingDiscipline(disciplines.get(discipline.getDisciplineCode()), null));
             }
         }
     }
@@ -108,6 +114,8 @@ public class Course {
     }
 
     public void setDisciplines(HashMap<String, Discipline> disciplines) {
+        for (Map.Entry<String, Discipline> disciplineEntry : disciplines.entrySet())
+            disciplineEntry.getValue().setCourse(this);
         this.disciplines = disciplines;
     }
 

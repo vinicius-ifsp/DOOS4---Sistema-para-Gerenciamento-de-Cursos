@@ -34,7 +34,7 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Button>
-            <ListView fx:id="listCourses" layoutX="32.0" layoutY="148.0" onMouseClicked="#openCourse" prefHeight="388.0" prefWidth="936.0" style="-fx-: #ffffff;" stylesheets="@../../css/CoursesListviewDesign.css" />
+            <ListView fx:id="courseListView" layoutX="32.0" layoutY="148.0" onMouseClicked="#openCourse" prefHeight="388.0" prefWidth="936.0" style="-fx-: #ffffff;" stylesheets="@../../css/CoursesListviewDesign.css" />
          </children>
       </AnchorPane>
    </children>

@@ -47,7 +47,7 @@
         <columns>
           <TableColumn fx:id="cName" editable="false" prefWidth="291.800048828125" resizable="false" text="Nome" />
           <TableColumn fx:id="cProntuario" editable="false" minWidth="0.0" prefWidth="135.199951171875" text="Prontuário" />
-            <TableColumn fx:id="cPPC" editable="false" prefWidth="130.0" resizable="false" text="Status" />
+            <TableColumn fx:id="cStatus" editable="false" prefWidth="130.0" resizable="false" text="Status" />
         </columns>
       </TableView>
       <Label layoutX="514.0" layoutY="147.0" text="Nome" textFill="WHITE" />

@@ -20,10 +20,15 @@ public class Discipline {
         this.module = module;
     }
 
-    public Discipline(String code, String name, double workload) {
+    public Discipline(String code, String name, double workload, int module) {
         this.code = code;
         this.name = name;
         this.workload = workload;
+        this.module = module;
+    }
+
+    public Discipline(String code) {
+        this.code = code;
     }
 
     public void addDependency(Discipline discipline) {
@@ -34,20 +39,6 @@ public class Discipline {
     public void addStudent(Student student) {
         if (!students.contains(student))
             students.add(student);
-    }
-
-
-
-    public int getTimeConclusionDependenciesInSemesters() {
-        int sum = 0;
-        for (Discipline dependency : dependencies) {
-            if (dependency.hasDependency()) {
-                sum += dependency.getTimeConclusionDependenciesInSemesters();
-            } else {
-                return 1;
-            }
-        }
-        return sum;
     }
 
     public boolean hasDependency() {

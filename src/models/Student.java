@@ -1,5 +1,8 @@
 package models;
 
+import resources.StudentStatus;
+
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class Student {
@@ -7,91 +10,78 @@ public class Student {
     private String prontuario, nome;
 
     private Course course;
+    private StudentStatus status;
+    private HashMap<String, StudentRemainingDiscipline> remainingDisciplines = new HashMap<>();
     private List<Commentary> comments = new ArrayList<>();
-    private List<Discipline> disciplines = new ArrayList<>();
-    private List<Discipline> disciplinesRemaining = new ArrayList<>();
-
-    public Student() {
-    }
-
-    public Student(int semIngresso, int semAtual, int anoIngresso, String prontuario, String nome, Course course) {
-        this.semIngresso = semIngresso;
-        this.semAtual = semAtual;
-        this.anoIngresso = anoIngresso;
-        this.prontuario = prontuario;
-        this.nome = nome;
-        this.course = course;
-    }
-
-    public Student(int semIngresso, int anoIngresso, String prontuario, String nome, Course course) {
-        this.semIngresso = semIngresso;
-        // this.semAtual = semAtual;
-        this.anoIngresso = anoIngresso;
-        this.prontuario = prontuario;
-        this.nome = nome;
-        this.course = course;
-    }
 
     public void addCommentary(Commentary commentary) {
         commentary.setStudent(this);
         comments.add(commentary);
     }
 
-    public void addDiscipline(Discipline discipline) {
+    public int getTimeToConclusion() {
+        List<StudentRemainingDiscipline> remaining = new ArrayList<>(remainingDisciplines.values());
+        Collections.sort(remaining, Comparator.comparingInt(StudentRemainingDiscipline::getDisciplineModule));
 
-    }
-
-    public String getPpc() {
-        return course == null ? "" : course.getPpc();
-    }
-
-
-    public void calculateTimeToConclusion() {
-//        Iterator<Map.Entry<String, Discipline>> courseDisciplines = course.getDisciplines();
-//        while (courseDisciplines.hasNext()) {
-//            Map.Entry<String, Discipline> disciplineEntry = courseDisciplines.next();
-//            if (!disciplines.contains(disciplineEntry))
-//                remaining.add(disciplineEntry.getValue());
-//        }
-
-        List<Discipline> remaining = new ArrayList<>(disciplinesRemaining);
-        Collections.sort(remaining, Comparator.comparingInt(Discipline::getModule));
-
-        int qtyRemainingSemester = 0;
+        int qtyRemainingSemester = course.getPeriodQty() - semAtual + 1;
         int currentModule = -1;
         int lastTimeConclusion = 0;
         int newTimeConclusion;
 
-        for (Discipline discipline : remaining) {
-            if (discipline.getModule() < semAtual) {
-                if (discipline.getModule() != currentModule) {
-                    lastTimeConclusion = discipline.getTimeConclusionDependenciesInSemesters();
+        for (StudentRemainingDiscipline discipline : remaining) {
+            if (discipline.getAtraso() > 0) {
+                if (discipline.getDisciplineModule() != currentModule) {
+                    lastTimeConclusion = calculateTimeConclusionDependencies(discipline.getDiscipline().getDependencies());
                     qtyRemainingSemester += lastTimeConclusion + 1;
-                    currentModule = discipline.getModule();
-                } else if ((newTimeConclusion = discipline.getTimeConclusionDependenciesInSemesters()) > lastTimeConclusion) {
+                    currentModule = discipline.getDisciplineModule();
+                } else if ((newTimeConclusion = calculateTimeConclusionDependencies(discipline.getDiscipline().getDependencies())) > lastTimeConclusion) {
                     qtyRemainingSemester += newTimeConclusion - lastTimeConclusion;
                     lastTimeConclusion = newTimeConclusion;
                 }
             }
         }
 
-        if (qtyRemainingSemester == 0) {
-            qtyRemainingSemester = course.getPeriodQty() - semAtual;
-        } else {
-            qtyRemainingSemester += course.getPeriodQty() - semAtual;
+        return qtyRemainingSemester;
+    }
+
+    private int calculateTimeConclusionDependencies(Iterator<Discipline> dependencies) {
+        int sum = 0;
+        while (dependencies.hasNext()){
+            Discipline dependency = dependencies.next();
+            if (remainingDisciplines.containsKey(dependency.getCode())) {
+                if (dependency.hasDependency()) {
+                    sum += calculateTimeConclusionDependencies(dependency.getDependencies());
+                } else {
+                    sum +=  1;
+                }
+            }
         }
-
-        System.out.println(qtyRemainingSemester);
-
+        return sum;
     }
 
     public Student(String prontuario) {
         this.prontuario = prontuario;
     }
 
-    public void addDisciplineRemaining(Discipline d) {
-        d.addStudent(this);
-        disciplinesRemaining.add(d);
+    public Student(int semIngresso, int anoIngresso, String prontuario, String nome, Course course) {
+        this.semIngresso = semIngresso;
+        this.anoIngresso = anoIngresso;
+        this.prontuario = prontuario;
+        this.nome = nome;
+        this.course = course;
+        this.semAtual = getCurrentSemester();
+    }
+
+
+    public void addRemainingDiscipline(StudentRemainingDiscipline discipline) {
+        discipline.setStudent(this);
+
+        remainingDisciplines.put(discipline.getDisciplineCode(), discipline);
+    }
+
+    public int getCurrentSemester() {
+        int sem = LocalDateTime.now().getMonthValue() >= 7 ? 2 : 1;
+        return (LocalDateTime.now().getYear() - anoIngresso) * 2 + (sem - semIngresso) + 1;
     }
 
     public int getSemIngresso() {
@@ -142,6 +132,14 @@ public class Student {
         this.course = course;
     }
 
+    public StudentStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(StudentStatus status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -153,5 +151,4 @@ public class Student {
                 ", course=" + (course != null ? course.getName() : null) +
                 '}';
     }
-
 }

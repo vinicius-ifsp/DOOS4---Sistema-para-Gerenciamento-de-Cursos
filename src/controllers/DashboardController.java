@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import models.Course;
+import resources.CourseSingleton;
 import views.loaders.WindowStudentsView;
 import views.loaders.WindowDisciplinesView;
 
@@ -23,11 +25,15 @@ public class DashboardController {
     private Label SecondReproofDisciplineDependents;
     @FXML
     private Label ThirdReproofDisciplineDependents;
-    @FXML Label courseName;
+    @FXML
+    private Label courseName;
+
+    private Course course;
 
     @FXML
     private void initialize() {
         // TODO load courses statistics
+        course = CourseSingleton.getInstance().getCourse();
         formatToShow();
     }
 
@@ -51,7 +57,7 @@ public class DashboardController {
     }
 
     private void formatToShow() {
-        courseName.setText("NÃO ESQUECER DE SETAR O NOME DO CURSO AQUI!!");
+        courseName.setText(course.getName());
         FirstReproofDiscipline.setText("Nome da Disciplina");
         FirstReproofDisciplineDependents.setText("3");
 
