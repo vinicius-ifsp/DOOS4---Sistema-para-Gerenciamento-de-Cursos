@@ -1,17 +1,21 @@
 package controllers;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import models.Course;
 import models.Discipline;
 import models.Student;
 import resources.CourseSingleton;
+import resources.StudentStatus;
 import utils.DataLoader;
 
 import java.io.File;
@@ -122,27 +126,28 @@ public class StudentsViewController {
             lStudentEntry.setText(Integer.toString(selectedStudent.getAnoIngresso()));
             lStudentSemester.setText(Integer.toString(selectedStudent.getSemAtual()));
             lStudentEstimate.setText(estimateTimeToConclusion);
-            lStudentStatus.setText("Ruim");
+            lStudentStatus.setText(selectedStudent.getStatus().toString());
             comentArea.setText("Muito Bom");
-
-            System.out.println(estimateTimeToConclusion);
 
         }
     }
 
     @FXML
-    private void searchStudent() {
+    private void filterStudents(MouseEvent mouseEvent) {
         ObservableList<Student> filteredStudents = FXCollections.observableArrayList();
         String name = txtName.getText();
         String prontuario = txtProntuario.getText();
+
         if (name.equals("") && prontuario.equals("")) {
             filteredStudents = studentObservableList;
         } else {
             Iterator<Student> itStudent = studentObservableList.iterator();
             while (itStudent.hasNext()) {
                 Student student = itStudent.next();
-                if (student.getNome().toLowerCase().contains(name) || student.getProntuario().equalsIgnoreCase(prontuario))
-                    filteredStudents.add(student);
+                if (student.getNome().toLowerCase().contains(name)) {
+                    if (prontuario.equals("") || student.getProntuario().equals(prontuario))
+                        filteredStudents.add(student);
+                }
             }
         }
 
@@ -150,6 +155,31 @@ public class StudentsViewController {
         studentTable.refresh();
     }
 
+    @FXML
+    private void filterByStatus(MouseEvent mouseEvent) {
+        String id = ((Control) mouseEvent.getSource()).getId();
+        StudentStatus studentStatus = null;
+        switch (id) {
+            case "redButton":
+                studentStatus = StudentStatus.VERMELHO;
+                break;
+            case "yellowButton":
+                studentStatus = StudentStatus.AMARELO;
+                break;
+            case "greenButton":
+                studentStatus = StudentStatus.VERDE;
+                break;
+        }
+        ObservableList<Student> filteredStudents = FXCollections.observableArrayList();
+        Iterator<Student> itStudent = studentObservableList.iterator();
+        while (itStudent.hasNext()) {
+            Student student = itStudent.next();
+            if (student.getStatus() == studentStatus)
+                filteredStudents.add(student);
+        }
+        studentTable.setItems(filteredStudents);
+        studentTable.refresh();
+    }
 
     public void importStudents(ActionEvent actionEvent) throws IOException {
         FileChooser fileChooser = new FileChooser();
@@ -162,13 +192,15 @@ public class StudentsViewController {
         try {
             List<Student> studentList = DataLoader.loadStudents(fileStudents);
             course.addStudents(studentList);
+
+            fileStudents = fileChooser.showOpenDialog(studentTable.getScene().getWindow());
+            course.addRemainingDisciplines(DataLoader.loadStudentRemainingDisciplines(fileStudents));
+            course.calculateTimeToConclusionOfStudents();
+
             studentList = getStudentArrayList(course.getStudents());
             studentObservableList = FXCollections.observableArrayList(studentList);
             studentTable.setItems(studentObservableList);
             studentTable.refresh();
-
-            fileStudents = fileChooser.showOpenDialog(studentTable.getScene().getWindow());
-            course.addRemainingDisciplines(DataLoader.loadStudentRemainingDisciplines(fileStudents));
         } catch (IOException e) {
             throw (e);
         }
@@ -180,5 +212,4 @@ public class StudentsViewController {
             students.add(studentsIt.next().getValue());
         return students;
     }
-
 }

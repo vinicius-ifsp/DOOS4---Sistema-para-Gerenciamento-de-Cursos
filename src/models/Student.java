@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class Student {
-    private int semIngresso, semAtual, anoIngresso;
+    private int semIngresso, semAtual, anoIngresso, timeToConclusion;
     private String prontuario, nome;
 
     private Course course;
@@ -20,6 +20,10 @@ public class Student {
     }
 
     public int getTimeToConclusion() {
+        return timeToConclusion;
+    }
+
+    public void calculateTimeToConclusion() {
         List<StudentRemainingDiscipline> remaining = new ArrayList<>(remainingDisciplines.values());
         Collections.sort(remaining, Comparator.comparingInt(StudentRemainingDiscipline::getDisciplineModule));
 
@@ -41,7 +45,16 @@ public class Student {
             }
         }
 
-        return qtyRemainingSemester;
+
+        if (qtyRemainingSemester == (course.getPeriodQty() - semAtual + 1)) {
+            status = StudentStatus.VERDE;
+        } else if (qtyRemainingSemester > ((2 * course.getPeriodQty() - 2) / 2 )) {
+            status = StudentStatus.VERMELHO;
+        } else {
+            status = StudentStatus.AMARELO;
+        }
+
+        timeToConclusion = qtyRemainingSemester;
     }
 
     private int calculateTimeConclusionDependencies(Iterator<Discipline> dependencies) {

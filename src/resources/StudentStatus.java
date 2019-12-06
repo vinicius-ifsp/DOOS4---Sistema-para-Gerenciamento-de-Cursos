@@ -2,7 +2,7 @@ package resources;
 
 public enum StudentStatus {
     VERMELHO("RISCO"),
-    AMARELO("ALERTA"),
+    AMARELO("ATRASADO"),
     VERDE("REGULAR");
 
     private String descricao;

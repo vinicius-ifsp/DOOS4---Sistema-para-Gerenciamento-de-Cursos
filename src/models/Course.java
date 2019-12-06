@@ -57,6 +57,11 @@ public class Course {
         }
     }
 
+    public void calculateTimeToConclusionOfStudents() {
+        for (Map.Entry<String, Student> stringStudentEntry : students.entrySet())
+            stringStudentEntry.getValue().calculateTimeToConclusion();
+    }
+
     public boolean hasStudent(String prontuario) {
         return students.containsKey(prontuario);
     }
