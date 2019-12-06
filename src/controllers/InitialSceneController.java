@@ -14,23 +14,23 @@ import views.loaders.WindowInitialScreenModal;
 import java.util.Iterator;
 
 public class InitialSceneController {
-    @FXML private ListView<Course> listCourses;
+    @FXML private ListView<Course> courseListView;
 
-    private ObservableList<Course> courses;
+    private ObservableList<Course> courseObservableList;
 
     @FXML
     private void initialize() {
         Iterator<Course> coursesIt = MockSingleton.getInstance().getCourses();
-        courses = FXCollections.observableArrayList();
+        courseObservableList = FXCollections.observableArrayList();
         while(coursesIt.hasNext())
-            courses.add(coursesIt.next());
-        listCourses.setItems(courses);
-        listCourses.setCellFactory(new ListViewPropertyCellFactory<>(Course::getName));
+            courseObservableList.add(coursesIt.next());
+        courseListView.setItems(courseObservableList);
+        courseListView.setCellFactory(new ListViewPropertyCellFactory<>(Course::getName));
     }
 
     @FXML
     private void openCourse() {
-        Course selectedCourse = listCourses.getSelectionModel().getSelectedItem();
+        Course selectedCourse = courseListView.getSelectionModel().getSelectedItem();
         if (selectedCourse != null) {
             CourseSingleton.getInstance().setCourse(selectedCourse);
             WindowDashboard windowDashboard = new WindowDashboard();

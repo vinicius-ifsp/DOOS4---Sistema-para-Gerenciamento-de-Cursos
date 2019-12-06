@@ -1,11 +1,9 @@
 package utils;
 
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import models.Course;
+import models.Discipline;
 import models.Student;
-import views.loaders.MockSingleton;
+import models.StudentRemainingDiscipline;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -15,25 +13,60 @@ import java.util.*;
 
 public class DataLoader {
 
-    public static ObservableList<Student> loadStudents(File file) throws IOException {
+    public static List<Student> loadStudents(File file) throws IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            ObservableList<Student> students = FXCollections.observableArrayList();;
+            List<Student> students = new ArrayList<>();
             String strCurrentLine;
-
-            Iterator<Course> courses = MockSingleton.getInstance().getCourses();
             while ((strCurrentLine = br.readLine()) != null) {
-                System.out.println("String Current Line: " + strCurrentLine);
-                String[] data = strCurrentLine.split(",");
-                Course course = new Course();
-                while(courses.hasNext()){
-                    if(courses.next().getPpc().equals(data[5])){
-                        course = courses.next();
-                        break;
-                    }
-                }
-                students.add(new Student(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2]), data[3], data[4], course));
+                String[] data = strCurrentLine.split(";");
+                int semIngresso = Integer.parseInt(data[6]);
+                int anoIngresso = Integer.parseInt(data[3]);
+                String prontuario = data[1].substring(2, 9);
+                String nome = data[2].toUpperCase();
+                students.add(new Student(semIngresso, anoIngresso,
+                        prontuario, nome, null));
             }
             return students;
+        } catch (IOException e) {
+            throw (e);
+        }
+    }
+
+    public static HashMap<String, Discipline> loadDisciplines(File file) throws IOException {
+        try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Vinicius\\Documents\\DOOS4\\DOOS4-Sistema-para-Gerenciamento-de-Cursos\\disciplinas.csv"))) {
+            HashMap<String, Discipline> disciplines = new HashMap<>();
+            String strCurrentLine;
+            while ((strCurrentLine = br.readLine()) != null) {
+                String[] data = strCurrentLine.split(";");
+                String code = data[0];
+                String name = data[1];
+                Double workload = Double.parseDouble(data[2]);
+                int module = Integer.parseInt(data[3]);
+                Discipline d = new Discipline(code, name, workload, module);
+                if (data.length == 5)
+                    for (String dependencyCode : data[4].split(","))
+                        d.addDependency(disciplines.get(dependencyCode));
+                disciplines.put(code, d);
+            }
+            return disciplines;
+        } catch (IOException e) {
+            throw (e);
+        }
+    }
+
+    public static List<StudentRemainingDiscipline> loadStudentRemainingDisciplines(File file) throws IOException {
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            List<StudentRemainingDiscipline> studentRemainingDisciplines = new ArrayList<>();
+            String strCurrentLine;
+            while ((strCurrentLine = br.readLine()) != null) {
+                String[] data = strCurrentLine.split(";");
+                String prontuario = data[1].substring(2, 9);
+                String codigo = data[3].substring(11, 16);
+//                int modulo = Integer.parseInt(data[4]);
+//                String nome = data[5].toUpperCase();
+                studentRemainingDisciplines.add(new StudentRemainingDiscipline(new Discipline(codigo), new Student(prontuario)));
+            }
+            return studentRemainingDisciplines;
         } catch (IOException e) {
             throw (e);
         }
