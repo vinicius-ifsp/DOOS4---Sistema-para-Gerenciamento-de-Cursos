@@ -3,12 +3,14 @@ package controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import models.Course;
 import models.Discipline;
+import models.Student;
 import resources.CourseSingleton;
 import utils.ListViewPropertyCellFactory;
 import views.loaders.WindowDisciplineRegister;
@@ -25,6 +27,24 @@ public class DisciplinesViewController {
     private TextField txtName;
     @FXML
     private TextField txtCode;
+    @FXML
+    private Label lDisciplineName;
+    @FXML
+    private Label lDisciplineTime;
+    @FXML
+    private Label lDisciplineCode;
+    @FXML
+    private Label lDisciplineLateStudentQtn;
+    @FXML
+    private Label lDisciplineDependencies;
+    @FXML
+    private Button editDiscipline;
+    @FXML
+    private ListView<Discipline> listDisciplineDependencies;
+    @FXML
+    private ListView<Student> listLateStudents;
+    @FXML
+    private ListView<Student> listRedStudents;
 
     private Course course;
     private ObservableList<Discipline> disciplines;
@@ -40,6 +60,8 @@ public class DisciplinesViewController {
             disciplines.add(disciplinesIt.next().getValue());
         disciplinesList.setItems(disciplines);
         disciplinesList.setCellFactory(new ListViewPropertyCellFactory<>(Discipline::getName));
+
+        editDiscipline.setVisible(false);
     }
 
 
@@ -77,5 +99,14 @@ public class DisciplinesViewController {
 
         disciplinesList.setItems(filteredDisciplines);
         disciplinesList.refresh();
+    }
+
+    private void formatToShow(Discipline discipline){
+        lDisciplineName.setText(discipline.getName());
+        lDisciplineCode.setText(discipline.getCode());
+        lDisciplineTime.setText(Double.toString(discipline.getWorkload()));
+        lDisciplineDependencies.setText("3");
+        lDisciplineLateStudentQtn.setText("40");
+        editDiscipline.setVisible(true);
     }
 }

@@ -1,5 +1,6 @@
 package controllers;
 
+import dao.CourseDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,24 +15,27 @@ import views.loaders.WindowInitialScreenModal;
 import java.util.Iterator;
 
 public class InitialSceneController {
-    @FXML private ListView<Course> listCourses;
+    @FXML private ListView<Course> courseListView;
 
-    private ObservableList<Course> courses;
+    private ObservableList<Course> courseObservableList;
+    private CourseDAO courseDAO = new CourseDAO();
 
     @FXML
     private void initialize() {
-        Iterator<Course> coursesIt = MockSingleton.getInstance().getCourses();
-        courses = FXCollections.observableArrayList();
-        while(coursesIt.hasNext())
-            courses.add(coursesIt.next());
-        listCourses.setItems(courses);
-        listCourses.setCellFactory(new ListViewPropertyCellFactory<>(Course::getName));
+
+//        Iterator<Course> coursesIt = MockSingleton.getInstance().getCourses();
+        courseObservableList = FXCollections.observableArrayList(courseDAO.findAll());
+//        while(coursesIt.hasNext())
+//            courseObservableList.add(coursesIt.next());
+        courseListView.setItems(courseObservableList);
+        courseListView.setCellFactory(new ListViewPropertyCellFactory<>(Course::getName));
     }
 
     @FXML
     private void openCourse() {
-        Course selectedCourse = listCourses.getSelectionModel().getSelectedItem();
+        Course selectedCourse = courseListView.getSelectionModel().getSelectedItem();
         if (selectedCourse != null) {
+
             CourseSingleton.getInstance().setCourse(selectedCourse);
             WindowDashboard windowDashboard = new WindowDashboard();
             windowDashboard.show();

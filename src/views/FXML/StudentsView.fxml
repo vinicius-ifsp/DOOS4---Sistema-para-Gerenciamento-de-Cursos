@@ -11,8 +11,11 @@
 
            <Pane layoutX="-1.0" prefHeight="41.0" prefWidth="999.0" style="-fx-background-color: #323232; -fx-effect: dropshadow(gaussian, #000000, 10, 0, 0, 0);">
               <children>
-                 <Button layoutX="14.0" layoutY="8.0" minHeight="-Infinity" mnemonicParsing="false" onMouseClicked="#close" prefHeight="25.0" prefWidth="39.0" style="-fx-shape: &quot;M10.273,5.009c0.444-0.444,1.143-0.444,1.587,0c0.429,0.429,0.429,1.143,0,1.571l-8.047,8.047h26.554c0.619,0,1.127,0.492,1.127,1.111c0,0.619-0.508,1.127-1.127,1.127H3.813l8.047,8.032c0.429,0.444,0.429,1.159,0,1.587c-0.444,0.444-1.143,0.444-1.587,0l-9.952-9.952c-0.429-0.429-0.429-1.143,0-1.571L10.273,5.009z&quot;; -fx-background-color: WHITE;" />
-                 <Label fx:id="courseName" alignment="TOP_RIGHT" layoutX="470.0" layoutY="10.0" prefHeight="20.0" prefWidth="511.0" textFill="#5c5c5c">
+                 <Button layoutX="14.0" layoutY="8.0" minHeight="-Infinity" mnemonicParsing="false" onMouseClicked="#close" prefHeight="25.0" prefWidth="39.0" style="-fx-shape: &quot;M10.273,5.009c0.444-0.444,1.143-0.444,1.587,0c0.429,0.429,0.429,1.143,0,1.571l-8.047,8.047h26.554c0.619,0,1.127,0.492,1.127,1.111c0,0.619-0.508,1.127-1.127,1.127H3.813l8.047,8.032c0.429,0.444,0.429,1.159,0,1.587c-0.444,0.444-1.143,0.444-1.587,0l-9.952-9.952c-0.429-0.429-0.429-1.143,0-1.571L10.273,5.009z&quot;; -fx-background-color: WHITE;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+                 <Label fx:id="courseName" alignment="TOP_RIGHT" layoutX="430.0" layoutY="10.0" prefHeight="20.0" prefWidth="551.0" textFill="WHITE">
                     <font>
                        <Font size="14.0" />
                     </font>
@@ -32,8 +35,11 @@
             <Font name="System Bold" size="16.0" />
          </font></Button>
       <TextField fx:id="txtName" layoutX="514.0" layoutY="169.0" prefHeight="32.0" prefWidth="244.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="GAINSBORO" height="495.0" layoutX="32.0" layoutY="170.0" stroke="TRANSPARENT" strokeType="INSIDE" width="335.0" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="32.0" />
-      <Button layoutX="941.0" layoutY="175.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#searchStudent" prefHeight="20.0" prefWidth="22.0" style="-fx-shape: &quot;M495,466.2L377.2,348.4c29.2-35.6,46.8-81.2,46.8-130.9C424,103.5,331.5,11,217.5,11C103.4,11,11,103.5,11,217.5   S103.4,424,217.5,424c49.7,0,95.2-17.5,130.8-46.7L466.1,495c8,8,20.9,8,28.9,0C503,487.1,503,474.1,495,466.2z M217.5,382.9   C126.2,382.9,52,308.7,52,217.5S126.2,52,217.5,52C308.7,52,383,126.3,383,217.5S308.7,382.9,217.5,382.9z&quot;; -fx-cursor: hand; -fx-background-color: white;">
+      <Rectangle fx:id="lStudantName" arcHeight="5.0" arcWidth="5.0" fill="GAINSBORO" height="495.0" layoutX="32.0" layoutY="170.0" stroke="TRANSPARENT" strokeType="INSIDE" width="335.0" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="32.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Rectangle>
+      <Button fx:id="filterStudentsButton" layoutX="941.0" layoutY="175.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#filterStudents" prefHeight="20.0" prefWidth="22.0" style="-fx-shape: &quot;M495,466.2L377.2,348.4c29.2-35.6,46.8-81.2,46.8-130.9C424,103.5,331.5,11,217.5,11C103.4,11,11,103.5,11,217.5   S103.4,424,217.5,424c49.7,0,95.2-17.5,130.8-46.7L466.1,495c8,8,20.9,8,28.9,0C503,487.1,503,474.1,495,466.2z M217.5,382.9   C126.2,382.9,52,308.7,52,217.5S126.2,52,217.5,52C308.7,52,383,126.3,383,217.5S308.7,382.9,217.5,382.9z&quot;; -fx-cursor: hand; -fx-background-color: white;">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
@@ -41,26 +47,80 @@
         <columns>
           <TableColumn fx:id="cName" editable="false" prefWidth="291.800048828125" resizable="false" text="Nome" />
           <TableColumn fx:id="cProntuario" editable="false" minWidth="0.0" prefWidth="135.199951171875" text="Prontuário" />
-            <TableColumn fx:id="cPPC" editable="false" prefWidth="130.0" resizable="false" text="Status" />
+            <TableColumn fx:id="cStatus" editable="false" prefWidth="130.0" resizable="false" text="Status" />
         </columns>
       </TableView>
       <Label layoutX="514.0" layoutY="147.0" text="Nome" textFill="WHITE" />
       <TextField fx:id="txtProntuario" layoutX="775.0" layoutY="169.0" prefHeight="32.0" prefWidth="144.0" />
       <Label layoutX="775.0" layoutY="147.0" text="Prontuário" textFill="WHITE" />
-      <Button fx:id="redButton" layoutX="409.0" layoutY="172.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: #fa1a1a; -fx-effect: dropshadow(gaussian, #464646, 5, 0, 1, 1); -fx-background-radius: 50px;" textFill="#fa1a1a">
+      <Button fx:id="redButton" onMouseClicked="#filterByStatus" layoutX="409.0" layoutY="172.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: #fa1a1a; -fx-effect: dropshadow(gaussian, #464646, 5, 0, 1, 1); -fx-background-radius: 50px;" textFill="#fa1a1a">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="yellowButton" layoutX="439.0" layoutY="172.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: #f2d80e; -fx-effect: dropshadow(gaussian, #464646, 5, 0, 1, 1); -fx-background-radius: 50px;" textFill="#464646">
+      <Button fx:id="yellowButton" onMouseClicked="#filterByStatus" layoutX="439.0" layoutY="172.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: #f2d80e; -fx-effect: dropshadow(gaussian, #464646, 5, 0, 1, 1); -fx-background-radius: 50px;" textFill="#464646">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="greenButton" layoutX="473.0" layoutY="172.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: #20e22a; -fx-effect: dropshadow(gaussian, #464646, 5, 0, 1, 1); -fx-background-radius: 50px;" textFill="#20e22a">
+      <Button fx:id="greenButton" onMouseClicked="#filterByStatus" layoutX="473.0" layoutY="172.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: #20e22a; -fx-effect: dropshadow(gaussian, #464646, 5, 0, 1, 1); -fx-background-radius: 50px;" textFill="#20e22a">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label layoutX="406.0" layoutY="147.0" text="Status" textFill="WHITE" />
+      <Label layoutX="406.0" layoutY="147.0" text="Filtrar por Status" textFill="WHITE" />
+      <Button fx:id="editStudent" layoutX="280.0" layoutY="172.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Editar Aluno" textFill="#ff9b17">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Label fx:id="lStudentName" layoutX="46.0" layoutY="191.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lStudentNumber" layoutX="44.0" layoutY="219.0">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+      <Label layoutX="147.0" layoutY="219.0" text="Data de Ingresso:">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+      <Label fx:id="lStudentEntry" layoutX="254.0" layoutY="219.0">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+      <Label layoutX="42.0" layoutY="238.0" text="Semestre Atual:">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+      <Label fx:id="lStudentSemester" layoutX="144.0" layoutY="238.0">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+      <Label layoutX="226.0" layoutY="238.0" text="Status:">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+      <Label fx:id="lStudentStatus" layoutX="273.0" layoutY="238.0">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+      <ListView fx:id="listAttendedDisciplines" layoutX="42.0" layoutY="307.0" prefHeight="100.0" prefWidth="310.0" />
+      <Label layoutX="44.0" layoutY="289.0" text="Disciplinas Cursadas" />
+      <Label layoutX="42.0" layoutY="407.0" text="Disciplinas Atrasadas" />
+      <ListView layoutX="44.0" layoutY="428.0" prefHeight="100.0" prefWidth="310.0" />
+      <TextArea fx:id="comentArea" layoutX="42.0" layoutY="592.0" prefHeight="58.0" prefWidth="310.0" />
+      <Label layoutX="44.0" layoutY="575.0" text="Comentário" />
+      <Button fx:id="disciplinesSuggestionBtn" layoutX="44.0" layoutY="537.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="310.0" style="-fx-background-color: #a2a2a2;" text="Ver sugestão de Disciplinas">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Label layoutX="44.0" layoutY="262.0" text="Previsão de Formação:" />
+      <Label fx:id="lStudentEstimate" layoutX="170.0" layoutY="262.0">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
    </children>
 </AnchorPane>

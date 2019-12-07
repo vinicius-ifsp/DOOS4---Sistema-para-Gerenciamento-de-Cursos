@@ -1,8 +1,6 @@
 package models;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 
 public class Course {
@@ -16,7 +14,7 @@ public class Course {
     public Course() {
     }
 
-    public Course(int code, int periodQty, String name, String ppc, double workload,  HashMap<String, Discipline> disciplines) {
+    public Course(int code, int periodQty, String name, String ppc, double workload, HashMap<String, Discipline> disciplines) {
         this.code = code;
         this.periodQty = periodQty;
         this.name = name;
@@ -27,21 +25,41 @@ public class Course {
     }
 
     public void addDiscipline(Discipline discipline) {
-        discipline.setCourse(this);
-        disciplines.put(discipline.getCode(), discipline);
+        if (!disciplines.containsKey(discipline.getCode())) {
+            discipline.setCourse(this);
+            disciplines.put(discipline.getCode(), discipline);
+        }
     }
 
     public boolean hasDiscipline(String code) {
         return disciplines.containsKey(code);
     }
 
-   public Iterator<Map.Entry<String, Discipline>> getDisciplines() {
+    public Iterator<Map.Entry<String, Discipline>> getDisciplines() {
         return disciplines.entrySet().iterator();
     }
 
     public void addStudent(Student student) {
-        student.setCourse(this);
-        students.put(student.getProntuario(), student);
+        if (!students.containsKey(student.getProntuario())) {
+            student.setCourse(this);
+            students.put(student.getProntuario(), student);
+        }
+    }
+
+    public void addRemainingDisciplines(List<StudentRemainingDiscipline> studentRemainingDisciplineList) {
+        for (StudentRemainingDiscipline discipline : studentRemainingDisciplineList) {
+            if (disciplines.get(discipline.getDisciplineCode()) != null) {
+                Student s = students.get(discipline.getStudentProntuario());
+                s.addRemainingDiscipline(
+                        new StudentRemainingDiscipline(disciplines.get(discipline.getDisciplineCode()), null));
+            }
+        }
+        calculateTimeToConclusionOfStudents();
+    }
+
+    private void calculateTimeToConclusionOfStudents() {
+        for (Map.Entry<String, Student> stringStudentEntry : students.entrySet())
+            stringStudentEntry.getValue().calculateTimeToConclusion();
     }
 
     public boolean hasStudent(String prontuario) {
@@ -54,6 +72,10 @@ public class Course {
 
     public Discipline getDiscipline(String code) {
         return disciplines.get(code);
+    }
+
+    public Student getStudent(String code) {
+        return students.get(code);
     }
 
     public int getCode() {
@@ -94,6 +116,17 @@ public class Course {
 
     public void setWorkload(double workload) {
         this.workload = workload;
+    }
+
+    public void setDisciplines(HashMap<String, Discipline> disciplines) {
+        for (Map.Entry<String, Discipline> disciplineEntry : disciplines.entrySet())
+            disciplineEntry.getValue().setCourse(this);
+        this.disciplines = disciplines;
+    }
+
+    public void addStudents(List<Student> studentList) {
+        for (Student student : studentList)
+            addStudent(student);
     }
 
     @Override

@@ -63,7 +63,7 @@ public class DisciplineRegisterController {
         if (!course.hasDiscipline(code)) {
             if (discipline == null) {
                 discipline = new Discipline(code, txtName.getText(),
-                        Double.parseDouble(txtWorkload.getText()));
+                        Double.parseDouble(txtWorkload.getText()), 1);
             } else {
                 discipline.setCode(code);
                 discipline.setName(txtName.getText());

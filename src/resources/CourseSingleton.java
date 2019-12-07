@@ -1,6 +1,9 @@
 package resources;
 
 import models.Course;
+import utils.DataLoader;
+
+import java.io.IOException;
 
 public class CourseSingleton {
     private static CourseSingleton courseSingleton;
@@ -22,5 +25,10 @@ public class CourseSingleton {
 
     public void setCourse(Course course) {
         this.course = course;
+        try {
+            course.setDisciplines(DataLoader.loadDisciplines(null));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

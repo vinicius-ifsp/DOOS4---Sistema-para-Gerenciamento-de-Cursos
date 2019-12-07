@@ -38,9 +38,7 @@ public class StudentRegistrationModalController {
 
         Course course = CourseSingleton.getInstance().getCourse();
         if (!course.hasStudent(txtProntuario.getText())) {
-            Student student = new Student(Integer.parseInt(txtIngressSemester.getText()), Integer.parseInt(txtCurrentSemester.getText()),
-                    Integer.parseInt(txtIngressYear.getText()), txtProntuario.getText(), txtName.getText(), null, null);
-            course.addStudent(student);
+            course.addStudent(null);
 
             // TODO Msg de Success
             System.out.println(course);

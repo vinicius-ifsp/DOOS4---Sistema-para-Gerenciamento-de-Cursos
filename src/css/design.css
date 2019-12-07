@@ -81,6 +81,7 @@ fx-alignment: CENTER;
 }
 
 
+
 .table-row-cell:selected {
     -fx-background-color: #1157CD;
     -fx-background-insets: 0;
