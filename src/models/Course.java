@@ -25,8 +25,10 @@ public class Course {
     }
 
     public void addDiscipline(Discipline discipline) {
-        discipline.setCourse(this);
-        disciplines.put(discipline.getCode(), discipline);
+        if (!disciplines.containsKey(discipline.getCode())) {
+            discipline.setCourse(this);
+            disciplines.put(discipline.getCode(), discipline);
+        }
     }
 
     public boolean hasDiscipline(String code) {
@@ -48,16 +50,14 @@ public class Course {
         for (StudentRemainingDiscipline discipline : studentRemainingDisciplineList) {
             if (disciplines.get(discipline.getDisciplineCode()) != null) {
                 Student s = students.get(discipline.getStudentProntuario());
-                if (s.getProntuario().equals("3002412")) {
-                    System.out.println();
-                }
                 s.addRemainingDiscipline(
                         new StudentRemainingDiscipline(disciplines.get(discipline.getDisciplineCode()), null));
             }
         }
+        calculateTimeToConclusionOfStudents();
     }
 
-    public void calculateTimeToConclusionOfStudents() {
+    private void calculateTimeToConclusionOfStudents() {
         for (Map.Entry<String, Student> stringStudentEntry : students.entrySet())
             stringStudentEntry.getValue().calculateTimeToConclusion();
     }

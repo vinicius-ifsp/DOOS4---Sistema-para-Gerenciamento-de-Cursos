@@ -10,6 +10,12 @@ public class StudentRemainingDiscipline {
         this.student = student;
     }
 
+    public StudentRemainingDiscipline(int atraso, Discipline discipline, Student student) {
+        this.atraso = atraso;
+        this.discipline = discipline;
+        this.student = student;
+    }
+
     public int getAtraso() {
         return student.getCurrentSemester() - discipline.getModule() >
                 0 ? student.getCurrentSemester() - discipline.getModule() : 0;
