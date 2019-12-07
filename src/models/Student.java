@@ -8,7 +8,6 @@ import java.util.*;
 public class Student {
     private int semIngresso, semAtual, anoIngresso, timeToConclusion;
     private String prontuario, nome;
-    private StudentStatus studentStatus;
 
     private Course course;
     private StudentStatus status;
@@ -77,13 +76,12 @@ public class Student {
         this.prontuario = prontuario;
     }
 
-    public Student(int semIngresso, int semAtual, int anoIngresso, String prontuario, String nome, Course course, StudentStatus studentStatus) {
+    public Student(int semIngresso, int anoIngresso, String prontuario, String nome, Course course) {
         this.semIngresso = semIngresso;
         this.anoIngresso = anoIngresso;
         this.prontuario = prontuario;
         this.nome = nome;
         this.course = course;
-        this.studentStatus = studentStatus;
         this.semAtual = getCurrentSemester();
     }
 
@@ -110,10 +108,6 @@ public class Student {
         int sem = LocalDateTime.now().getMonthValue() >= 7 ? 2 : 1;
         return (LocalDateTime.now().getYear() - anoIngresso) * 2 + (sem - semIngresso) + 1;
     }
-
-    public StudentStatus getStudentStatus() { return studentStatus; }
-
-    public void setStudentStatus(StudentStatus studentStatus) { this.studentStatus = studentStatus; }
 
     public int getSemIngresso() {
         return semIngresso;
@@ -180,7 +174,6 @@ public class Student {
                 ", prontuario='" + prontuario + '\'' +
                 ", nome='" + nome + '\'' +
                 ", course=" + (course != null ? course.getName() : null) +
-                ", studentStatus = " + studentStatus +
                 '}';
     }
 }
