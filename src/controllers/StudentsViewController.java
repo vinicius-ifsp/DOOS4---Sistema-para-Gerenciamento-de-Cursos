@@ -1,5 +1,6 @@
 package controllers;
 
+import dao.StudentDAO;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -14,6 +15,7 @@ import javafx.stage.Stage;
 import models.Course;
 import models.Discipline;
 import models.Student;
+import models.StudentRemainingDiscipline;
 import resources.CourseSingleton;
 import resources.StudentStatus;
 import utils.DataLoader;
@@ -70,6 +72,7 @@ public class StudentsViewController {
 
     private Course course;
     private ObservableList<Student> studentObservableList;
+    private StudentDAO studentDAO = new StudentDAO();
 
     @FXML
     private void initialize() {
@@ -100,8 +103,6 @@ public class StudentsViewController {
     private void selectedStudent() {
         Student selectedStudent = studentTable.getSelectionModel().getSelectedItem();
         if (selectedStudent != null) {
-            // TODO populate panel left
-
             int timeToConclusion = selectedStudent.getTimeToConclusion();
             int timeToConclusionYears = timeToConclusion / 2;
             String estimateTimeToConclusion;
@@ -113,7 +114,8 @@ public class StudentsViewController {
                     estimateTimeToConclusion = (LocalDateTime.now().getYear() + timeToConclusionYears) + "/2";
                 }
             } else {
-                estimateTimeToConclusion = (LocalDateTime.now().getYear() + timeToConclusionYears) + "/" + (LocalDateTime.now().getMonthValue() > 6 ? 2 : 1);
+                estimateTimeToConclusion = (LocalDateTime.now().getYear() + timeToConclusionYears) + "/" +
+                        (LocalDateTime.now().getMonthValue() > 6 ? 2 : 1);
             }
 
 
@@ -191,11 +193,13 @@ public class StudentsViewController {
 
         try {
             List<Student> studentList = DataLoader.loadStudents(fileStudents);
+            studentDAO.saveStudentList(studentList);
             course.addStudents(studentList);
 
             fileStudents = fileChooser.showOpenDialog(studentTable.getScene().getWindow());
-            course.addRemainingDisciplines(DataLoader.loadStudentRemainingDisciplines(fileStudents));
-            course.calculateTimeToConclusionOfStudents();
+            List<StudentRemainingDiscipline> studentRemainingDisciplines = DataLoader.loadStudentRemainingDisciplines(fileStudents);
+            studentDAO.saveStudentRemainingDisciplines(studentRemainingDisciplines);
+            course.addRemainingDisciplines(studentRemainingDisciplines);
 
             studentList = getStudentArrayList(course.getStudents());
             studentObservableList = FXCollections.observableArrayList(studentList);

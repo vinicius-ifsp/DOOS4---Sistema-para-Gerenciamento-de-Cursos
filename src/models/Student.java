@@ -85,11 +85,23 @@ public class Student {
         this.semAtual = getCurrentSemester();
     }
 
+    public Student(int semIngresso, int semAtual, int anoIngresso, String prontuario, String nome) {
+        this.semIngresso = semIngresso;
+        this.semAtual = semAtual;
+        this.anoIngresso = anoIngresso;
+        this.prontuario = prontuario;
+        this.nome = nome;
+    }
 
     public void addRemainingDiscipline(StudentRemainingDiscipline discipline) {
-        discipline.setStudent(this);
+        if (!remainingDisciplines.containsKey(discipline.getDisciplineCode())) {
+            discipline.setStudent(this);
+            remainingDisciplines.put(discipline.getDisciplineCode(), discipline);
+        }
+    }
 
-        remainingDisciplines.put(discipline.getDisciplineCode(), discipline);
+    public boolean hasRemainingDiscipline(String code) {
+        return remainingDisciplines.containsKey(code);
     }
 
     public int getCurrentSemester() {
