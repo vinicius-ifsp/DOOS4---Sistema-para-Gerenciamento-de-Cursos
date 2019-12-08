@@ -1,8 +1,6 @@
 package controllers;
 
 import dao.StudentDAO;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,6 +17,7 @@ import models.StudentRemainingDiscipline;
 import resources.CourseSingleton;
 import resources.StudentStatus;
 import utils.DataLoader;
+import utils.ListViewPropertyCellFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -59,9 +58,9 @@ public class StudentsViewController {
     @FXML
     private Label lStudentEstimate;
     @FXML
-    private ListView<Discipline> listAttendedDisciplines;
+    private ListView<Discipline> attendedDisciplinesListView;
     @FXML
-    private ListView<Discipline> listStudentLateDisciplines;
+    private ListView<Discipline> lateDisciplinesListView;
     @FXML
     private TextArea comentArea;
     @FXML
@@ -87,7 +86,8 @@ public class StudentsViewController {
         studentObservableList = FXCollections.observableArrayList(studentList);
         studentTable.setItems(studentObservableList);
 
-
+        lateDisciplinesListView.setCellFactory(new ListViewPropertyCellFactory<>(Discipline::getCode));
+        attendedDisciplinesListView.setCellFactory(new ListViewPropertyCellFactory<>(Discipline::getCode));
         editStudent.setVisible(false);
         comentArea.setVisible(false);
         disciplinesSuggestionBtn.setVisible(false);
@@ -118,7 +118,8 @@ public class StudentsViewController {
                         (LocalDateTime.now().getMonthValue() > 6 ? 2 : 1);
             }
 
-
+            updateAttendedDisciplinesListView(selectedStudent);
+            updateLateDisciplinesListView(selectedStudent);
             editStudent.setVisible(true);
             comentArea.setVisible(false);
             disciplinesSuggestionBtn.setVisible(true);
@@ -132,6 +133,27 @@ public class StudentsViewController {
             comentArea.setText("Muito Bom");
 
         }
+    }
+
+    private void updateLateDisciplinesListView(Student student) {
+        ObservableList<Discipline> lateDisciplines = FXCollections.observableArrayList();
+        Iterator<Map.Entry<String, StudentRemainingDiscipline>> iterator = student.getRemainingDisciplinesList();
+        while (iterator.hasNext())
+            lateDisciplines.add(iterator.next().getValue().getDiscipline());
+        lateDisciplinesListView.setItems(lateDisciplines);
+        lateDisciplinesListView.refresh();
+    }
+
+    private void updateAttendedDisciplinesListView(Student student) {
+        ObservableList<Discipline> attendedDisciplines = FXCollections.observableArrayList();
+        Iterator<Map.Entry<String, Discipline>> iterator = course.getDisciplines();
+        while (iterator.hasNext()) {
+            Discipline d = iterator.next().getValue();
+            if (!student.hasRemainingDiscipline(d.getCode()))
+                attendedDisciplines.add(d);
+        }
+        attendedDisciplinesListView.setItems(attendedDisciplines);
+        attendedDisciplinesListView.refresh();
     }
 
     @FXML
@@ -194,7 +216,7 @@ public class StudentsViewController {
         try {
             List<Student> studentList = DataLoader.loadStudents(fileStudents);
             studentDAO.saveStudentList(studentList);
-            course.addStudents(studentList);
+            course.addStudent(studentList);
 
             fileStudents = fileChooser.showOpenDialog(studentTable.getScene().getWindow());
             List<StudentRemainingDiscipline> studentRemainingDisciplines = DataLoader.loadStudentRemainingDisciplines(fileStudents);

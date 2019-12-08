@@ -1,5 +1,6 @@
 package controllers;
 
+import dao.CourseDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -27,12 +28,12 @@ public class InitialScreenModalController {
     @FXML
     private Button btnClose;
 
-    private Course course = new Course();
+    private Course course;
+    private CourseDAO courseDAO = new CourseDAO();
 
     @FXML
     private void close() {
         Stage stage = (Stage) btnClose.getScene().getWindow();
-        System.out.println(MockSingleton.getInstance().toString());
         stage.close();
     }
 
@@ -43,20 +44,14 @@ public class InitialScreenModalController {
             return;
         }
 
-        int code = MockSingleton.getInstance().generateCode();
-        if (!MockSingleton.getInstance().hasCourse(code)) {
-            course.setCode(code);
-            course.setPeriodQty(Integer.parseInt(txtPeriodQty.getText()));
-            course.setName(txtName.getText());
-            course.setPpc(txtPpc.getText());
-            course.setWorkload(Double.parseDouble(txtWorkload.getText()));
+        course.setPeriodQty(Integer.parseInt(txtPeriodQty.getText()));
+        course.setName(txtName.getText());
+        course.setPpc(txtPpc.getText());
+        course.setWorkload(Double.parseDouble(txtWorkload.getText()));
 
-            MockSingleton.getInstance().addCourse(course);
+        if (courseDAO.save(course)) {
             System.out.println(course);
-            // TODO Msg de Success
             close();
-        } else {
-            // TODO show msg course already registered
         }
     }
 
@@ -77,5 +72,9 @@ public class InitialScreenModalController {
         while (disciplinesIt.hasNext())
             disciplines.add(disciplinesIt.next().getValue());
         return disciplines.iterator();
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 }

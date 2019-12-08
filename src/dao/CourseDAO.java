@@ -6,11 +6,13 @@ import utils.ConnectionFactory;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CourseDAO {
     private ConnectionFactory conn;
+    private DisciplineDAO disciplineDAO;
 
     public CourseDAO() {
         conn = new ConnectionFactory();
@@ -33,5 +35,33 @@ public class CourseDAO {
     }
 
 
+    public boolean save(Course course) {
+        boolean result = false;
+        int lastCode = -1;
+        String sql = "INSERT INTO curso(nome, qtdPeriodos, ppc, workload) VALUES (?, ?, ?, ?)";
+        try (PreparedStatement stmt = conn.createStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            stmt.setString(1, course.getName());
+            stmt.setInt(2, course.getPeriodQty());
+            stmt.setString(3, course.getPpc());
+            stmt.setDouble(4, course.getWorkload());
+            stmt.execute();
+            ResultSet rs = stmt.getGeneratedKeys();
+            if (rs.next()) {
+                lastCode = rs.getInt(1);
+                result = true;
+            }
+            rs.close();
 
+            if (course.getQtyDisciplines() > 0) {
+                course.setCode(lastCode);
+                disciplineDAO = new DisciplineDAO();
+                result = disciplineDAO.save(course.getDisciplines());
+            }
+
+        } catch (SQLException e) {
+            result = false;
+            e.printStackTrace();
+        }
+        return result;
+    }
 }

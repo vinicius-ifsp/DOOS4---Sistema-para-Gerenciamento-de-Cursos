@@ -24,26 +24,24 @@ public class Course {
             this.disciplines = disciplines;
     }
 
+    public boolean hasDiscipline(String code) {
+        return disciplines.containsKey(code);
+    }
+
     public void addDiscipline(Discipline discipline) {
-        if (!disciplines.containsKey(discipline.getCode())) {
+        if (!hasDiscipline(discipline.getCode())) {
             discipline.setCourse(this);
             disciplines.put(discipline.getCode(), discipline);
         }
     }
 
-    public boolean hasDiscipline(String code) {
-        return disciplines.containsKey(code);
+    public void addDiscipline(List<Discipline> disciplines) {
+        for (Discipline discipline : disciplines)
+            addDiscipline(discipline);
     }
 
     public Iterator<Map.Entry<String, Discipline>> getDisciplines() {
         return disciplines.entrySet().iterator();
-    }
-
-    public void addStudent(Student student) {
-        if (!students.containsKey(student.getProntuario())) {
-            student.setCourse(this);
-            students.put(student.getProntuario(), student);
-        }
     }
 
     public void addRemainingDisciplines(List<StudentRemainingDiscipline> studentRemainingDisciplineList) {
@@ -64,6 +62,22 @@ public class Course {
 
     public boolean hasStudent(String prontuario) {
         return students.containsKey(prontuario);
+    }
+
+    public void addStudent(Student student) {
+        if (!hasStudent(student.getProntuario())) {
+            student.setCourse(this);
+            students.put(student.getProntuario(), student);
+        }
+    }
+
+    public void addStudent(List<Student> studentList) {
+        for (Student student : studentList)
+            addStudent(student);
+    }
+
+    public int getQtyDisciplines() {
+        return disciplines.size();
     }
 
     public Iterator<Map.Entry<String, Student>> getStudents() {
@@ -124,10 +138,6 @@ public class Course {
         this.disciplines = disciplines;
     }
 
-    public void addStudents(List<Student> studentList) {
-        for (Student student : studentList)
-            addStudent(student);
-    }
 
     @Override
     public String toString() {

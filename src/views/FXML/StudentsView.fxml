@@ -106,10 +106,10 @@
          <font>
             <Font size="13.0" />
          </font></Label>
-      <ListView fx:id="listAttendedDisciplines" layoutX="42.0" layoutY="307.0" prefHeight="100.0" prefWidth="310.0" />
+      <ListView fx:id="attendedDisciplinesListView" layoutX="42.0" layoutY="307.0" prefHeight="100.0" prefWidth="310.0" />
       <Label layoutX="44.0" layoutY="289.0" text="Disciplinas Cursadas" />
       <Label layoutX="42.0" layoutY="407.0" text="Disciplinas Atrasadas" />
-      <ListView layoutX="44.0" layoutY="428.0" prefHeight="100.0" prefWidth="310.0" />
+      <ListView fx:id="lateDisciplinesListView" layoutX="44.0" layoutY="428.0" prefHeight="100.0" prefWidth="310.0" />
       <TextArea fx:id="comentArea" layoutX="42.0" layoutY="592.0" prefHeight="58.0" prefWidth="310.0" />
       <Label layoutX="44.0" layoutY="575.0" text="Comentário" />
       <Button fx:id="disciplinesSuggestionBtn" layoutX="44.0" layoutY="537.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="310.0" style="-fx-background-color: #a2a2a2;" text="Ver sugestão de Disciplinas">

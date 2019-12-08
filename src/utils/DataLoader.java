@@ -33,7 +33,7 @@ public class DataLoader {
     }
 
     public static HashMap<String, Discipline> loadDisciplines(File file) throws IOException {
-        try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Vinicius\\Documents\\DOOS4\\DOOS4-Sistema-para-Gerenciamento-de-Cursos\\disciplinas.csv"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             HashMap<String, Discipline> disciplines = new HashMap<>();
             String strCurrentLine;
             while ((strCurrentLine = br.readLine()) != null) {

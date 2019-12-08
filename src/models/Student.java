@@ -100,6 +100,10 @@ public class Student {
         }
     }
 
+    public Iterator<Map.Entry<String, StudentRemainingDiscipline>> getRemainingDisciplinesList() {
+        return remainingDisciplines.entrySet().iterator();
+    }
+
     public boolean hasRemainingDiscipline(String code) {
         return remainingDisciplines.containsKey(code);
     }

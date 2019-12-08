@@ -1,5 +1,6 @@
 package controllers;
 
+import dao.DisciplineDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -7,16 +8,19 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import models.Course;
 import models.Discipline;
 import models.Student;
 import resources.CourseSingleton;
+import utils.DataLoader;
 import utils.ListViewPropertyCellFactory;
 import views.loaders.WindowDisciplineRegister;
 
-import java.util.Iterator;
-import java.util.Map;
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
 
 public class DisciplinesViewController {
     @FXML
@@ -48,25 +52,30 @@ public class DisciplinesViewController {
 
     private Course course;
     private ObservableList<Discipline> disciplines;
+    private DisciplineDAO disciplineDAO = new DisciplineDAO();
 
     @FXML
     private void initialize() {
         course = CourseSingleton.getInstance().getCourse();
         courseName.setText(course.getName());
-        Iterator<Map.Entry<String, Discipline>> disciplinesIt = course.getDisciplines();
+        disciplinesList.setCellFactory(new ListViewPropertyCellFactory<>(Discipline::getName));
+        updateDisciplinesList();
+        editDiscipline.setVisible(false);
+    }
 
+    private void updateDisciplinesList() {
+        Iterator<Map.Entry<String, Discipline>> disciplinesIt = course.getDisciplines();
         disciplines = FXCollections.observableArrayList();
         while (disciplinesIt.hasNext())
             disciplines.add(disciplinesIt.next().getValue());
         disciplinesList.setItems(disciplines);
-        disciplinesList.setCellFactory(new ListViewPropertyCellFactory<>(Discipline::getName));
-
-        editDiscipline.setVisible(false);
+        disciplinesList.refresh();
     }
 
 
     @FXML
     private void openRegisterModal() {
+        importDisciplines();
         Discipline discipline = new Discipline();
         WindowDisciplineRegister windowDisciplineRegister = new WindowDisciplineRegister(discipline, disciplines.iterator());
         windowDisciplineRegister.show();
@@ -99,6 +108,27 @@ public class DisciplinesViewController {
 
         disciplinesList.setItems(filteredDisciplines);
         disciplinesList.refresh();
+    }
+
+
+    public void importDisciplines() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+        File fileDisciplines = fileChooser.showOpenDialog(disciplinesList.getScene().getWindow());
+
+        if (fileDisciplines == null) {
+            return;
+        }
+
+        try {
+            HashMap<String, Discipline> map = DataLoader.loadDisciplines(fileDisciplines);
+            disciplineDAO.save(map.entrySet().iterator());
+            course.addDiscipline(disciplineDAO.findByCourse(course.getCode()));
+            updateDisciplinesList();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void formatToShow(Discipline discipline){
