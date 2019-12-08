@@ -14,5 +14,9 @@ public class ConnectionFactory {
     public PreparedStatement createStatement(String sql) throws SQLException {
         return createConnection().prepareStatement(sql);
     }
+
+    public PreparedStatement createStatement(String sql, int opt) throws SQLException {
+        return createConnection().prepareStatement(sql, opt);
+    }
 }
 

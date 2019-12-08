@@ -1,6 +1,5 @@
 package controllers;
 
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,7 +8,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import models.CheckBox;
 import models.Course;
 import models.Discipline;
@@ -36,12 +34,7 @@ public class DisciplineRegisterController {
 
     @FXML
     void initialize() {
-        checkBoxListView.setCellFactory(CheckBoxListCell.forListView(new Callback<CheckBox, ObservableValue<Boolean>>() {
-            @Override
-            public ObservableValue<Boolean> call(CheckBox s) {
-                return s.onProperty();
-            }
-        }));
+        checkBoxListView.setCellFactory(CheckBoxListCell.forListView(s -> s.onProperty()));
         checkBoxListView.setItems(disciplines);
     }
 
@@ -68,6 +61,7 @@ public class DisciplineRegisterController {
                 discipline.setCode(code);
                 discipline.setName(txtName.getText());
                 discipline.setWorkload(Double.parseDouble(txtWorkload.getText()));
+                discipline.setModule(1); // TODO trocar quando add campo
             }
             setDependencies(discipline);
             course.addDiscipline(discipline);
@@ -95,7 +89,7 @@ public class DisciplineRegisterController {
         disciplines = FXCollections.observableArrayList();
         while (disciplinesIt.hasNext())
             disciplines.add(new CheckBox(disciplinesIt.next(), false));
-        checkBoxListView.setItems(disciplines); // TODO ver com o Lucas pq isso é necessario
+        checkBoxListView.setItems(disciplines);
     }
 
     public void setDiscipline(Discipline discipline) {

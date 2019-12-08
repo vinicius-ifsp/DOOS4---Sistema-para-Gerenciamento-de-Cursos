@@ -26,7 +26,7 @@ public class DatabaseBuilder {
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:database.db");
              Statement stmt = conn.createStatement()) {
             stmt.addBatch("CREATE TABLE curso (\n" +
-                    "\tcode INTEGER NOT NULL PRIMARY KEY,\n" +
+                    "\tcode INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
                     "\tnome TEXT,\n" +
                     "\tqtdPeriodos INTEGER,\n" +
                     "\tppc TEXT,\n" +

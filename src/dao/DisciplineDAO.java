@@ -4,13 +4,16 @@ import models.Course;
 import models.Discipline;
 import models.Student;
 import models.StudentRemainingDiscipline;
+import resources.CourseSingleton;
 import utils.ConnectionFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class DisciplineDAO {
     private ConnectionFactory conn;
@@ -55,5 +58,28 @@ public class DisciplineDAO {
             e.printStackTrace();
         }
         return studentRemainingDisciplines;
+    }
+
+    public boolean save(Iterator<Map.Entry<String, Discipline>> disciplines) {
+        Course course = CourseSingleton.getInstance().getCourse();
+        String sql = "INSERT INTO disciplina(code, nome, workload, modulo, curso) VALUES (?, ?, ?, ?, ?)";
+        try (PreparedStatement stmt = conn.createStatement(sql)) {
+            while (disciplines.hasNext()) {
+                Discipline d = disciplines.next().getValue();
+                if (!course.hasDiscipline(d.getCode())) {
+                    stmt.setString(1, d.getCode());
+                    stmt.setString(2, d.getName());
+                    stmt.setDouble(3, d.getWorkload());
+                    stmt.setInt(4, d.getModule());
+                    stmt.setInt(5, course.getCode());
+                    stmt.addBatch();
+                }
+            }
+            stmt.executeBatch();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

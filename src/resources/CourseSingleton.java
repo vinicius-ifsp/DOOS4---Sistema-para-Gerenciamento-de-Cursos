@@ -25,10 +25,5 @@ public class CourseSingleton {
 
     public void setCourse(Course course) {
         this.course = course;
-        try {
-            course.setDisciplines(DataLoader.loadDisciplines(null));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

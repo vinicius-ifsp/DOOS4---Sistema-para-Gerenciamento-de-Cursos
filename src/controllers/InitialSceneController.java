@@ -8,11 +8,8 @@ import javafx.scene.control.ListView;
 import models.Course;
 import resources.CourseSingleton;
 import utils.ListViewPropertyCellFactory;
-import views.loaders.MockSingleton;
 import views.loaders.WindowDashboard;
 import views.loaders.WindowInitialScreenModal;
-
-import java.util.Iterator;
 
 public class InitialSceneController {
     @FXML private ListView<Course> courseListView;
@@ -22,13 +19,13 @@ public class InitialSceneController {
 
     @FXML
     private void initialize() {
-
-//        Iterator<Course> coursesIt = MockSingleton.getInstance().getCourses();
-        courseObservableList = FXCollections.observableArrayList(courseDAO.findAll());
-//        while(coursesIt.hasNext())
-//            courseObservableList.add(coursesIt.next());
-        courseListView.setItems(courseObservableList);
         courseListView.setCellFactory(new ListViewPropertyCellFactory<>(Course::getName));
+        updateCourseListView();
+    }
+
+    private void updateCourseListView() {
+        courseObservableList = FXCollections.observableArrayList(courseDAO.findAll());
+        courseListView.setItems(courseObservableList);
     }
 
     @FXML
@@ -44,7 +41,11 @@ public class InitialSceneController {
 
     @FXML
     private void registerCourse() {
-        WindowInitialScreenModal windowInitialScreenModal = new WindowInitialScreenModal();
+        Course course = new Course();
+        WindowInitialScreenModal windowInitialScreenModal = new WindowInitialScreenModal(course);
         windowInitialScreenModal.show();
+        if (course.getName() != null) {
+            updateCourseListView();
+        }
     }
 }
