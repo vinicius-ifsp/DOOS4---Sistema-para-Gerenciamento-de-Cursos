@@ -25,6 +25,8 @@ public class DisciplineRegisterController {
     private TextField txtWorkload;
     @FXML
     private Button btnCancel;
+    @FXML
+    private TextField txtModule;
 
     @FXML
     private ListView<CheckBox> checkBoxListView;

@@ -32,13 +32,13 @@
                      </font>
                   </Label>
                </children></Pane>
-                <Pane layoutX="32.0" layoutY="169.0" prefHeight="201.0" prefWidth="566.0" style="-fx-background-color: #DCDCDC; -fx-background-radius: 5px;" styleClass="border" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="402.0">
+                <Pane layoutX="27.0" layoutY="158.0" prefHeight="201.0" prefWidth="571.0" style="-fx-background-color: #DCDCDC; -fx-background-radius: 5px;" styleClass="border" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="402.0">
                <children>
                   <Button fx:id="editDiscipline" layoutX="451.0" layoutY="2.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Editar Disciplina" textFill="#ff9700">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Button>
-                  <Label fx:id="lDisciplineName" layoutX="14.0" layoutY="46.0">
+                  <Label fx:id="lDisciplineName" layoutX="14.0" layoutY="46.0" prefHeight="20.0" prefWidth="230.0">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -62,9 +62,9 @@
                      </font>
                   </Label>
                </children></Pane>
-                <Button fx:id="btnRegisterDiscipline" layoutX="662.0" layoutY="616.0" mnemonicParsing="false" onMouseClicked="#openRegisterModal" prefHeight="34.0" prefWidth="312.0" style="-fx-background-radius: 3px;" stylesheets="@/css/design.css" text="Cadastrar Disciplina" textAlignment="CENTER" textFill="WHITE">
+                <Button fx:id="btnRegisterDiscipline" layoutX="814.0" layoutY="616.0" mnemonicParsing="false" onMouseClicked="#openRegisterModal" prefHeight="34.0" prefWidth="160.0" style="-fx-background-radius: 3px;" stylesheets="@/css/design.css" text="Cadastrar Disciplina" textAlignment="CENTER" textFill="WHITE">
                     <font>
-                        <Font name="Arial Black" size="15.0" />
+                        <Font name="Arial Black" size="12.0" />
                     </font>
                 </Button>
                 <TextField fx:id="txtName" layoutX="662.0" layoutY="186.0" prefHeight="33.0" prefWidth="187.0" />
@@ -90,6 +90,11 @@
                   </Label>
                </children>
             </Pane>
+            <Button fx:id="btnImport" layoutX="646.0" layoutY="616.0" mnemonicParsing="false" onMouseClicked="#importDisciplines" prefHeight="34.0" prefWidth="160.0" style="-fx-background-color: #197de2;" text="Importar" textFill="WHITE">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+            </Button>
             </children>
         </AnchorPane>
     </children>
