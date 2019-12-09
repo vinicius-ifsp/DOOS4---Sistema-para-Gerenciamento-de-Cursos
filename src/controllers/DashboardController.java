@@ -146,7 +146,7 @@ public class DashboardController {
     private List<Student> getStudentWithYellowStatusArrayList(Iterator<Map.Entry<String, Student>> studentsIt) {
         List<Student> students = new ArrayList<>();
         while (studentsIt.hasNext())
-            if(studentsIt.next().getValue().getStatus() == StudentStatus.AMARELO){
+            if(studentsIt.next().getValue().getStatus() == StudentStatus.VERMELHO){
                 students.add(studentsIt.next().getValue());
             }
         return students;
