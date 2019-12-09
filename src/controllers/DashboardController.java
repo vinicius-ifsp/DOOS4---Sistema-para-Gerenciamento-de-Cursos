@@ -2,22 +2,25 @@ package controllers;
 
 import dao.DisciplineDAO;
 import dao.StudentDAO;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import models.Course;
 import models.Discipline;
 import models.Student;
 import models.StudentRemainingDiscipline;
 import resources.CourseSingleton;
-import utils.DataLoader;
+import resources.StudentStatus;
 import views.loaders.WindowStudentsView;
 import views.loaders.WindowDisciplinesView;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class DashboardController {
     @FXML
@@ -38,13 +41,32 @@ public class DashboardController {
     @FXML
     private Label courseName;
 
+    @FXML
+    private TableView<Student> yellowStatusTable;
+    @FXML
+    private TableView<Student> wontGraduateTable;
+
+    @FXML
+    private TableColumn<Student, String> cYellowStatusName;
+    @FXML
+    private TableColumn<Student, String> cYellowStatusPront;
+    @FXML
+    private TableColumn<Student, String> cWontGraduateName;
+    @FXML
+    private TableColumn<Student, String> cWontGraduatePront;
+    @FXML
+    private TableColumn<Student, String> cWontGraduateTime;
+
     private Course course;
     private DisciplineDAO disciplineDAO = new DisciplineDAO();
     private StudentDAO studentDAO = new StudentDAO();
 
+
+    private ObservableList<Student> yellowStatusObservableList;
+    private ObservableList<Student> wontGraduateObservableList;
+
     @FXML
     private void initialize() {
-        // TODO load courses statistics
         course = CourseSingleton.getInstance().getCourse();
         loadStudentsAndDisciplinesFromDB();
         formatToShow();
@@ -80,14 +102,63 @@ public class DashboardController {
     }
 
     private void formatToShow() {
+
+        cYellowStatusName.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        cYellowStatusPront.setCellValueFactory(new PropertyValueFactory<>("prontuario"));
+
+        cWontGraduateName.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        cWontGraduatePront.setCellValueFactory(new PropertyValueFactory<>("prontuario"));
+        cWontGraduateTime.setCellValueFactory(new PropertyValueFactory<>("timeToConclusion"));
+
+
+        List<Student> yellowStatusStudents = getStudentWithYellowStatusArrayList(course.getStudents());
+        yellowStatusObservableList = FXCollections.observableList(yellowStatusStudents);
+        yellowStatusTable.setItems(yellowStatusObservableList);
+
+
+        List<Student> wontGraduateStudents = getNotGraduatingStudentsArrayList(course.getStudents());
+        wontGraduateObservableList = FXCollections.observableList(wontGraduateStudents);
+        wontGraduateTable.setItems(wontGraduateObservableList);
+
+
         courseName.setText(course.getName());
-        FirstReproofDiscipline.setText("Nome da Disciplina");
-        FirstReproofDisciplineDependents.setText("3");
+        Map<String, Double> disciplinesWithMostReproof = disciplineDAO.findDisciplinesWithMostReproof();
+        int count = 0;
 
-        SecondReproofDiscipline.setText("Nome da Disciplina");
-        SecondReproofDisciplineDependents.setText("2");
+        for (String s : disciplinesWithMostReproof.keySet()) {
+            if(count > 2)
+                break;
+            if(count == 0){
+            FirstReproofDiscipline.setText(s);
+            FirstReproofDisciplineDependents.setText(disciplinesWithMostReproof.get(s).toString());
+            } else if (count == 1){
+                SecondReproofDiscipline.setText(s);
+                SecondReproofDisciplineDependents.setText(disciplinesWithMostReproof.get(s).toString());
+            } else {
+                ThirdReproofDiscipline.setText(s);
+                ThirdReproofDisciplineDependents.setText(disciplinesWithMostReproof.get(s).toString());
+            }
+            count++;
+        }
 
-        ThirdReproofDiscipline.setText("Nome da Disciplina");
-        ThirdReproofDisciplineDependents.setText("2");
+    }
+
+    private List<Student> getStudentWithYellowStatusArrayList(Iterator<Map.Entry<String, Student>> studentsIt) {
+        List<Student> students = new ArrayList<>();
+        while (studentsIt.hasNext())
+            if(studentsIt.next().getValue().getStatus() == StudentStatus.AMARELO){
+                students.add(studentsIt.next().getValue());
+            }
+        return students;
+    }
+
+
+    private List<Student> getNotGraduatingStudentsArrayList(Iterator<Map.Entry<String, Student>> studentsIt) {
+        List<Student> students = new ArrayList<>();
+        while (studentsIt.hasNext())
+            if(studentsIt.next().getValue().getTimeToConclusion() > 5){
+                students.add(studentsIt.next().getValue());
+            }
+        return students;
     }
 }

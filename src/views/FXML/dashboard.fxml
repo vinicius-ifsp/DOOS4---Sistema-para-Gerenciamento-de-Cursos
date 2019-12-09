@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane alignment="center" hgap="10" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="684.0" prefWidth="1000.0" style="-fx-background-color: #4D4D4D;" vgap="10" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DashboardController">
+<GridPane alignment="center" hgap="10" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="684.0" prefWidth="1000.0" style="-fx-background-color: #4D4D4D;" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DashboardController">
 <columnConstraints>
     <ColumnConstraints />
 </columnConstraints>
@@ -24,7 +25,7 @@
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="9.0" layoutY="80.0" text="Número de Disciplinas dependentes:" />
+                  <Label layoutX="9.0" layoutY="80.0" text="Número de alunos dependentes:" />
                   <Label fx:id="FirstReproofDisciplineDependents" layoutX="213.0" layoutY="80.0" prefHeight="20.0" prefWidth="28.0" textFill="#464646">
                      <font>
                         <Font name="System Bold" size="14.0" />
@@ -33,13 +34,13 @@
                </children></Pane>
             <Pane layoutX="21.0" layoutY="175.0" prefHeight="330.0" prefWidth="454.0" style="-fx-background-color: #DCDCDC; -fx-background-radius: 5px;" styleClass="border" AnchorPane.leftAnchor="20.0">
                <children>
-                  <TableView layoutX="9.0" layoutY="44.0" prefHeight="276.0" prefWidth="437.0">
+                  <TableView fx:id="yellowStatusTable" layoutX="9.0" layoutY="44.0" prefHeight="276.0" prefWidth="437.0">
                     <columns>
-                      <TableColumn prefWidth="291.3999671936035" text="Nome" />
-                      <TableColumn prefWidth="141.39999389648438" text="Prontuário" />
+                      <TableColumn fx:id="cYellowStatusName" prefWidth="291.3999671936035" text="Nome" />
+                      <TableColumn fx:id="cYellowStatusPront" prefWidth="141.39999389648438" text="Prontuário" />
                     </columns>
                   </TableView>
-                  <Label layoutX="133.0" layoutY="14.0" text="Alunos com Status Vermelho" textFill="#4c4c4c">
+                  <Label layoutX="133.0" layoutY="14.0" text="Alunos com Status Amarelo" textFill="#4c4c4c">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -52,11 +53,11 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TableView layoutX="14.0" layoutY="45.0" prefHeight="268.0" prefWidth="454.0">
+                  <TableView fx:id="wontGraduateTable" layoutX="14.0" layoutY="45.0" prefHeight="268.0" prefWidth="454.0">
                     <columns>
-                      <TableColumn prefWidth="178.20001220703125" text="Nome" />
-                      <TableColumn prefWidth="126.0" text="Prontuário" />
-                        <TableColumn prefWidth="146.20001220703125" text="Tempo para Formar" />
+                      <TableColumn fx:id="cWontGraduateName" prefWidth="178.20001220703125" text="Nome" />
+                      <TableColumn fx:id="cWontGraduatePront" prefWidth="126.0" text="Prontuário" />
+                        <TableColumn fx:id="cWontGraduateTime" prefWidth="146.20001220703125" text="Tempo para Formar" />
                     </columns>
                   </TableView>
                </children></Pane>
@@ -68,7 +69,7 @@
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="15.0" layoutY="81.0" text="Número de Disciplinas dependentes:" />
+                  <Label layoutX="15.0" layoutY="81.0" text="Número de alunos dependentes:" />
                   <Label fx:id="SecondReproofDisciplineDependents" layoutX="219.0" layoutY="77.0" prefHeight="25.0" prefWidth="28.0">
                      <font>
                         <Font name="System Bold" size="16.0" />
@@ -83,7 +84,7 @@
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="80.0" text="Número de Disciplinas dependentes:" />
+                  <Label layoutX="14.0" layoutY="80.0" text="Número de alunos dependentes:" />
                   <Label fx:id="ThirdReproofDisciplineDependents" layoutX="215.0" layoutY="80.0" prefHeight="20.0" prefWidth="28.0">
                      <font>
                         <Font name="System Bold" size="14.0" />
