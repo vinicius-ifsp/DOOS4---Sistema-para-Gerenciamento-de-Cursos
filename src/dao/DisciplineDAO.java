@@ -10,10 +10,7 @@ import utils.ConnectionFactory;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class DisciplineDAO {
     private ConnectionFactory conn;
@@ -58,6 +55,25 @@ public class DisciplineDAO {
             e.printStackTrace();
         }
         return studentRemainingDisciplines;
+    }
+
+    public Map<String, Double> findDisciplinesWithMostReproof(){
+        Map<String, Double> mostReproofDisciplines = new HashMap<>();
+
+        String sql = "SELECT disciplina, count(*) count FROM disciplinaRestanteAluno " +
+                "group by disciplina order by count desc";
+        try (PreparedStatement stmt = conn.createStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+            int count = 0;
+
+            while (rs.next() && count < 2){
+                count++;
+                mostReproofDisciplines.put(rs.getString("disciplina"), rs.getDouble("count"));}
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return mostReproofDisciplines;
     }
 
     public boolean save(Iterator<Map.Entry<String, Discipline>> disciplines) {

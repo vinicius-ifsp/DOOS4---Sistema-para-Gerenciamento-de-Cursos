@@ -48,7 +48,7 @@ public class Student {
 
         if (qtyRemainingSemester == (course.getPeriodQty() - semAtual + 1)) {
             status = StudentStatus.VERDE;
-        } else if (qtyRemainingSemester > ((2 * course.getPeriodQty() - 2) / 2 )) {
+        } else if (qtyRemainingSemester > ((2 * course.getPeriodQty() - 2) )) {
             status = StudentStatus.VERMELHO;
         } else {
             status = StudentStatus.AMARELO;
