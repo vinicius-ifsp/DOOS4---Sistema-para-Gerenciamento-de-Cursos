@@ -1,5 +1,6 @@
 package controllers;
 
+import dao.DisciplineDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -33,6 +34,7 @@ public class DisciplineRegisterController {
 
     private Discipline discipline;
     private ObservableList<CheckBox> disciplines = FXCollections.observableArrayList();
+    private DisciplineDAO disciplineDAO = new DisciplineDAO();
 
     @FXML
     void initialize() {
@@ -43,7 +45,6 @@ public class DisciplineRegisterController {
     @FXML
     private void close() {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
-        System.out.println(MockSingleton.getInstance().toString());
         stage.close();
     }
 
@@ -58,14 +59,18 @@ public class DisciplineRegisterController {
         if (!course.hasDiscipline(code)) {
             if (discipline == null) {
                 discipline = new Discipline(code, txtName.getText(),
-                        Double.parseDouble(txtWorkload.getText()), 1);
+                        Double.parseDouble(txtWorkload.getText()), Integer.parseInt(txtModule.getText()));
+                setDependencies(discipline);
             } else {
                 discipline.setCode(code);
                 discipline.setName(txtName.getText());
                 discipline.setWorkload(Double.parseDouble(txtWorkload.getText()));
-                discipline.setModule(1); // TODO trocar quando add campo
+                discipline.setModule(Integer.parseInt(txtModule.getText()));
+
+                setDependencies(discipline);
+                discipline.setCourse(course);
+                disciplineDAO.save(discipline);
             }
-            setDependencies(discipline);
             course.addDiscipline(discipline);
             // TODO Msg de Success
             close();

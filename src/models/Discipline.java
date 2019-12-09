@@ -41,6 +41,10 @@ public class Discipline {
             students.add(student);
     }
 
+    public int getQtyDependencies() {
+        return dependencies.size();
+    }
+
     public boolean hasDependency() {
         return dependencies.size() > 0 ? true : false;
     }
@@ -96,5 +100,9 @@ public class Discipline {
                 ", name='" + name + '\'' +
                 ", workload=" + workload +
                 '}';
+    }
+
+    public String getDescriptionToListView() {
+        return getCode() + " - " + getName();
     }
 }

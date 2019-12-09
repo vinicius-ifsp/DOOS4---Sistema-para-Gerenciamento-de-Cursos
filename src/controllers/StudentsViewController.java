@@ -130,6 +130,7 @@ public class StudentsViewController {
             lStudentSemester.setText(Integer.toString(selectedStudent.getSemAtual()));
             lStudentEstimate.setText(estimateTimeToConclusion);
             lStudentStatus.setText(selectedStudent.getStatus().toString());
+            comentArea.setVisible(true);
             comentArea.setText("Muito Bom");
 
         }

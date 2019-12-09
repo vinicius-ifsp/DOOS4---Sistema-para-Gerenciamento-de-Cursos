@@ -72,7 +72,15 @@ public class DashboardController {
     private void initialize() {
         course = CourseSingleton.getInstance().getCourse();
         loadStudentsAndDisciplinesFromDB();
-        formatToShow();
+
+        cYellowStatusName.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        cYellowStatusPront.setCellValueFactory(new PropertyValueFactory<>("prontuario"));
+        cWontGraduateName.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        cWontGraduatePront.setCellValueFactory(new PropertyValueFactory<>("prontuario"));
+        cWontGraduateTime.setCellValueFactory(new PropertyValueFactory<>("timeToConclusion"));
+        courseName.setText(course.getName());
+
+        formatDataToShow();
     }
 
     private void loadStudentsAndDisciplinesFromDB() {
@@ -90,12 +98,14 @@ public class DashboardController {
     private void openDisciplines() {
         WindowDisciplinesView windowDisciplinesView = new WindowDisciplinesView();
         windowDisciplinesView.show();
+        formatDataToShow();
     }
 
     @FXML
     private void openStudents() {
         WindowStudentsView windowStudentsView = new WindowStudentsView();
         windowStudentsView.show();
+        formatDataToShow();
     }
 
     @FXML
@@ -104,27 +114,18 @@ public class DashboardController {
         stage.close();
     }
 
-    private void formatToShow() {
-
-        cYellowStatusName.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        cYellowStatusPront.setCellValueFactory(new PropertyValueFactory<>("prontuario"));
-
-        cWontGraduateName.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        cWontGraduatePront.setCellValueFactory(new PropertyValueFactory<>("prontuario"));
-        cWontGraduateTime.setCellValueFactory(new PropertyValueFactory<>("timeToConclusion"));
-
+    private void formatDataToShow() {
 
         List<Student> yellowStatusStudents = getStudentWithYellowStatusArrayList(course.getStudents());
         yellowStatusObservableList = FXCollections.observableList(yellowStatusStudents);
         yellowStatusTable.setItems(yellowStatusObservableList);
-
+        yellowStatusTable.refresh();
 
         List<Student> wontGraduateStudents = getNotGraduatingStudentsArrayList(course.getStudents());
         wontGraduateObservableList = FXCollections.observableList(wontGraduateStudents);
         wontGraduateTable.setItems(wontGraduateObservableList);
+        wontGraduateTable.refresh();
 
-
-        courseName.setText(course.getName());
         Map<String, Double> disciplinesWithMostReproof = disciplineDAO.findDisciplinesWithMostReproof();
         int count = 0;
 

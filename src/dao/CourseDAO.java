@@ -34,7 +34,6 @@ public class CourseDAO {
         return courses;
     }
 
-
     public boolean save(Course course) {
         boolean result = false;
         int lastCode = -1;
@@ -55,7 +54,7 @@ public class CourseDAO {
             if (course.getQtyDisciplines() > 0) {
                 course.setCode(lastCode);
                 disciplineDAO = new DisciplineDAO();
-                result = disciplineDAO.save(course.getDisciplines());
+                result = disciplineDAO.save(course.getDisciplines(), lastCode);
             }
 
         } catch (SQLException e) {

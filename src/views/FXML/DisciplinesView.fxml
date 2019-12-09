@@ -56,7 +56,7 @@
                 <Pane layoutX="319.0" layoutY="394.0" prefHeight="254.0" prefWidth="279.0" style="-fx-background-color: #DCDCDC; -fx-background-radius: 5px;" styleClass="border">
                <children>
                   <ListView fx:id="listRedStudents" layoutX="12.0" layoutY="40.0" prefHeight="200.0" prefWidth="256.0" />
-                  <Label layoutX="14.0" layoutY="14.0" text="Estudantes com Status Ruim" textFill="#2c2c2c">
+                  <Label layoutX="14.0" layoutY="14.0" text="Estudantes com Status Vermelho" textFill="#2c2c2c">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -76,7 +76,7 @@
                 <Label layoutX="662.0" layoutY="159.0" text="Nome" textFill="WHITE" />
                 <Label layoutX="855.0" layoutY="159.0" text="Código" textFill="WHITE" />
                 <Rectangle arcHeight="3.0" arcWidth="1.0" fill="WHITE" height="481.0" layoutX="631.0" layoutY="169.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1.0" />
-            <ListView fx:id="disciplinesList" layoutX="654.0" layoutY="238.0" prefHeight="367.0" prefWidth="320.0" style="-fx-font-size: 12px;" stylesheets="@/css/SubjectsListviewDesign.css" />
+            <ListView fx:id="disciplinesList" onMouseClicked="#selectedDiscipline" layoutX="654.0" layoutY="238.0" prefHeight="367.0" prefWidth="320.0" style="-fx-font-size: 12px;" stylesheets="@/css/SubjectsListviewDesign.css" />
             <Pane layoutX="-1.0" prefHeight="41.0" prefWidth="999.0" style="-fx-background-color: #323232; -fx-effect: dropshadow(gaussian, #000000, 10, 0, 0, 0);">
                <children>
                           <Button layoutX="14.0" layoutY="8.0" minHeight="-Infinity" mnemonicParsing="false" onMouseClicked="#close" prefHeight="25.0" prefWidth="39.0" style="-fx-shape: &quot;M10.273,5.009c0.444-0.444,1.143-0.444,1.587,0c0.429,0.429,0.429,1.143,0,1.571l-8.047,8.047h26.554c0.619,0,1.127,0.492,1.127,1.111c0,0.619-0.508,1.127-1.127,1.127H3.813l8.047,8.032c0.429,0.444,0.429,1.159,0,1.587c-0.444,0.444-1.143,0.444-1.587,0l-9.952-9.952c-0.429-0.429-0.429-1.143,0-1.571L10.273,5.009z&quot;; -fx-background-color: WHITE;">

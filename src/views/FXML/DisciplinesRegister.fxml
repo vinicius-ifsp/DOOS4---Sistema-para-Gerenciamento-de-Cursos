@@ -33,7 +33,7 @@
             <ListView fx:id="checkBoxListView" layoutX="340.0" layoutY="64.0" prefHeight="242.0" prefWidth="280.0" style="-fx-background-color: #4D4D4D;" stylesheets="@/css/SubjectsListviewDesign.css" AnchorPane.bottomAnchor="32.0" AnchorPane.rightAnchor="14.0" />
             <Text fill="WHITE" layoutX="306.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pre-Requisito" />
             <TextField fx:id="txtModule" layoutX="160.0" layoutY="232.0" prefHeight="31.0" prefWidth="131.0" />
-            <Label layoutX="160.0" layoutY="204.0" text="Módulos" textFill="WHITE" />
+            <Label layoutX="160.0" layoutY="204.0" text="Módulo" textFill="WHITE" />
             </children>
         </AnchorPane>
     </children>

@@ -1,5 +1,7 @@
 package models;
 
+import resources.StudentStatus;
+
 import java.util.*;
 
 
@@ -48,16 +50,17 @@ public class Course {
         for (StudentRemainingDiscipline discipline : studentRemainingDisciplineList) {
             if (disciplines.get(discipline.getDisciplineCode()) != null) {
                 Student s = students.get(discipline.getStudentProntuario());
-                s.addRemainingDiscipline(
-                        new StudentRemainingDiscipline(disciplines.get(discipline.getDisciplineCode()), null));
+                if (s != null)
+                    s.addRemainingDiscipline(
+                            new StudentRemainingDiscipline(disciplines.get(discipline.getDisciplineCode()), null));
             }
         }
         calculateTimeToConclusionOfStudents();
     }
 
     private void calculateTimeToConclusionOfStudents() {
-        for (Map.Entry<String, Student> stringStudentEntry : students.entrySet())
-            stringStudentEntry.getValue().calculateTimeToConclusion();
+        for (Student student : students.values())
+            student.calculateTimeToConclusion();
     }
 
     public boolean hasStudent(String prontuario) {
@@ -82,6 +85,32 @@ public class Course {
 
     public Iterator<Map.Entry<String, Student>> getStudents() {
         return students.entrySet().iterator();
+    }
+
+    public List<Student> getStudentsByStatus(StudentStatus status) {
+        List<Student> studentList = new ArrayList<>();
+        for (Student student : students.values())
+            if (student.getStatus() == status)
+                studentList.add(student);
+        return studentList;
+    }
+
+    public int getQtyStudentLateByDiscipline(Discipline d) {
+        int sum = 0;
+        for (Student s : students.values())
+            if (s.hasRemainingDiscipline(d.getCode()))
+                if (s.getSemAtual() > d.getModule())
+                    sum++;
+        return sum;
+    }
+
+    public List<Student> getStudentLateByDiscipline(Discipline d) {
+        List<Student> studentList = new ArrayList<>();
+        for (Student s : students.values())
+            if (s.hasRemainingDiscipline(d.getCode()))
+                if (s.getSemAtual() > d.getModule())
+                    studentList.add(s);
+        return studentList;
     }
 
     public Discipline getDiscipline(String code) {

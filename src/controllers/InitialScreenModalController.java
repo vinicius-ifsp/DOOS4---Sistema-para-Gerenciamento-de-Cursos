@@ -50,7 +50,6 @@ public class InitialScreenModalController {
         course.setWorkload(Double.parseDouble(txtWorkload.getText()));
 
         if (courseDAO.save(course)) {
-            System.out.println(course);
             close();
         }
     }

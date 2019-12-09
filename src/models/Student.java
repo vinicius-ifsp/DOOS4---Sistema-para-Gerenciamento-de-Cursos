@@ -19,6 +19,7 @@ public class Student {
         comments.add(commentary);
     }
 
+    // retorna tempo restante para conclusão em semestres
     public int getTimeToConclusion() {
         return timeToConclusion;
     }
@@ -48,7 +49,7 @@ public class Student {
 
         if (qtyRemainingSemester == (course.getPeriodQty() - semAtual + 1)) {
             status = StudentStatus.VERDE;
-        } else if (qtyRemainingSemester > ((2 * course.getPeriodQty() - 2) )) {
+        } else if (qtyRemainingSemester >= (2 * course.getPeriodQty() - 2)) {
             status = StudentStatus.VERMELHO;
         } else {
             status = StudentStatus.AMARELO;
@@ -179,5 +180,9 @@ public class Student {
                 ", nome='" + nome + '\'' +
                 ", course=" + (course != null ? course.getName() : null) +
                 '}';
+    }
+
+    public String getDescriptionToListView() {
+        return prontuario + " - " + nome;
     }
 }

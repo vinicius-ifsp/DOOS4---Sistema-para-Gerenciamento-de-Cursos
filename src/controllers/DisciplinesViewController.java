@@ -14,6 +14,7 @@ import models.Course;
 import models.Discipline;
 import models.Student;
 import resources.CourseSingleton;
+import resources.StudentStatus;
 import utils.DataLoader;
 import utils.ListViewPropertyCellFactory;
 import views.loaders.WindowDisciplineRegister;
@@ -58,7 +59,10 @@ public class DisciplinesViewController {
     private void initialize() {
         course = CourseSingleton.getInstance().getCourse();
         courseName.setText(course.getName());
-        disciplinesList.setCellFactory(new ListViewPropertyCellFactory<>(Discipline::getName));
+        disciplinesList.setCellFactory(new ListViewPropertyCellFactory<>(Discipline::getDescriptionToListView));
+        listDisciplineDependencies.setCellFactory(new ListViewPropertyCellFactory<>(Discipline::getDescriptionToListView));
+        listLateStudents.setCellFactory(new ListViewPropertyCellFactory<>(Student::getDescriptionToListView));
+        listRedStudents.setCellFactory(new ListViewPropertyCellFactory<>(Student::getDescriptionToListView));
         updateDisciplinesList();
         editDiscipline.setVisible(false);
     }
@@ -75,7 +79,6 @@ public class DisciplinesViewController {
 
     @FXML
     private void openRegisterModal() {
-        importDisciplines();
         Discipline discipline = new Discipline();
         WindowDisciplineRegister windowDisciplineRegister = new WindowDisciplineRegister(discipline, disciplines.iterator());
         windowDisciplineRegister.show();
@@ -110,8 +113,8 @@ public class DisciplinesViewController {
         disciplinesList.refresh();
     }
 
-
-    public void importDisciplines() {
+    @FXML
+    private void importDisciplines() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
         File fileDisciplines = fileChooser.showOpenDialog(disciplinesList.getScene().getWindow());
@@ -131,12 +134,41 @@ public class DisciplinesViewController {
 
     }
 
+    @FXML
+    private void selectedDiscipline() {
+        Discipline selectedDiscipline = disciplinesList.getSelectionModel().getSelectedItem();
+        if (selectedDiscipline != null) {
+            formatToShow(selectedDiscipline);
+        }
+    }
+
     private void formatToShow(Discipline discipline){
         lDisciplineName.setText(discipline.getName());
         lDisciplineCode.setText(discipline.getCode());
         lDisciplineTime.setText(Double.toString(discipline.getWorkload()));
-        lDisciplineDependencies.setText("3");
-        lDisciplineLateStudentQtn.setText("40");
+        lDisciplineDependencies.setText("" + discipline.getQtyDependencies());
+
+        ObservableList<Student> studentObservableList = FXCollections.observableArrayList(course.getStudentLateByDiscipline(discipline));
+        listLateStudents.setItems(studentObservableList);
+        listLateStudents.refresh();
+
+        lDisciplineLateStudentQtn.setText(""+studentObservableList.size());
         editDiscipline.setVisible(true);
+
+        ObservableList<Student> listRedStudentsObservableList = FXCollections.observableArrayList(course.getStudentsByStatus(StudentStatus.VERMELHO));
+        listRedStudents.setItems(listRedStudentsObservableList);
+        listRedStudents.refresh();
+
+        ObservableList<Discipline> listDisciplineDependenciesObservableList = FXCollections.observableArrayList(mapToArrayList(discipline.getDependencies()));
+        listDisciplineDependencies.setItems(listDisciplineDependenciesObservableList);
+        listDisciplineDependencies.refresh();
+    }
+
+
+    private List<Discipline> mapToArrayList(Iterator<Discipline> dependencies) {
+        List<Discipline> disciplines = new ArrayList<>();
+        while(dependencies.hasNext())
+            disciplines.add(dependencies.next());
+        return disciplines;
     }
 }

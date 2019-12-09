@@ -33,28 +33,36 @@ public class DatabaseBuilder {
                     "\tworkload REAL);\n");
 
             stmt.addBatch("CREATE TABLE disciplina (\n" +
-                    "\tcode TEXT NOT NULL PRIMARY KEY,\n" +
+                    "\tcode TEXT NOT NULL,\n" +
                     "\tnome TEXT,\n" +
                     "\tworkload REAL,\n" +
-                    "\tmodulo INTEGER TEXT,\n" +
-                    "\tcurso INTEGER TEXT,\n" +
+                    "\tmodulo INTEGER,\n" +
+                    "\tcurso INTEGER,\n" +
+                    "\tPRIMARY KEY (code, curso),\n" +
                     "\tFOREIGN KEY('curso') REFERENCES 'curso'('code')\n);");
 
             stmt.addBatch("CREATE TABLE aluno (\n" +
                     "\tprontuario TEXT NOT NULL PRIMARY KEY,\n" +
                     "\tnome TEXT,\n" +
-                    "\tsemIngresso INTEGER TEXT,\n" +
-                    "\tsemAtual INTEGER TEXT,\n" +
-                    "\tanoIngresso INTEGER TEXT,\n" +
-                    "\tcurso INTEGER TEXT,\n" +
+                    "\tsemIngresso INTEGER,\n" +
+                    "\tsemAtual INTEGER,\n" +
+                    "\tanoIngresso INTEGER,\n" +
+                    "\tcurso INTEGER,\n" +
                     "\tFOREIGN KEY('curso') REFERENCES 'curso'('code')\n);");
+
+            stmt.addBatch("CREATE TABLE disciplinaDependencia (\n" +
+                    "\tdisciplina TEXT,\n" +
+                    "\tdependencia TEXT,\n" +
+                    "\tPRIMARY KEY (disciplina, dependencia),\n" +
+                    "\tFOREIGN KEY('disciplina') REFERENCES 'disciplina'('code'),\n" +
+                    "\tFOREIGN KEY('dependencia') REFERENCES 'disciplina'('code')\n);");
 
             stmt.addBatch("CREATE TABLE disciplinaRestanteAluno (\n" +
                     "\tdisciplina TEXT,\n" +
                     "\taluno TEXT,\n" +
-                    "\tatraso INTEGER TEXT,\n" +
+                    "\tatraso INTEGER,\n" +
                     "\tPRIMARY KEY (disciplina, aluno),\n" +
-                    "\tFOREIGN KEY('disciplina') REFERENCES 'disciplina'('code')\n);" +
+                    "\tFOREIGN KEY('disciplina') REFERENCES 'disciplina'('code'),\n" +
                     "\tFOREIGN KEY('aluno') REFERENCES 'aluno'('prontuario')\n);");
             stmt.executeBatch();
 
