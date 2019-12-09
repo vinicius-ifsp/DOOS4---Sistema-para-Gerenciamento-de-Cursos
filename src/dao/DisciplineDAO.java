@@ -65,7 +65,8 @@ public class DisciplineDAO {
         try (PreparedStatement stmt = conn.createStatement(sql)) {
             ResultSet rs = stmt.executeQuery();
             int count = 0;
-            while (rs.next() || count < 2){
+
+            while (rs.next() && count < 2){
                 count++;
                 mostReproofDisciplines.put(rs.getString("disciplina"), rs.getDouble("count"));}
             rs.close();

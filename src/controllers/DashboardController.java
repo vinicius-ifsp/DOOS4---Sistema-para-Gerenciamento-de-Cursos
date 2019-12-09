@@ -17,10 +17,13 @@ import models.Student;
 import models.StudentRemainingDiscipline;
 import resources.CourseSingleton;
 import resources.StudentStatus;
-import views.loaders.WindowStudentsView;
 import views.loaders.WindowDisciplinesView;
+import views.loaders.WindowStudentsView;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 public class DashboardController {
     @FXML
@@ -126,12 +129,12 @@ public class DashboardController {
         int count = 0;
 
         for (String s : disciplinesWithMostReproof.keySet()) {
-            if(count > 2)
+            if (count > 2)
                 break;
-            if(count == 0){
-            FirstReproofDiscipline.setText(s);
-            FirstReproofDisciplineDependents.setText(disciplinesWithMostReproof.get(s).toString());
-            } else if (count == 1){
+            if (count == 0) {
+                FirstReproofDiscipline.setText(s);
+                FirstReproofDisciplineDependents.setText(disciplinesWithMostReproof.get(s).toString());
+            } else if (count == 1) {
                 SecondReproofDiscipline.setText(s);
                 SecondReproofDisciplineDependents.setText(disciplinesWithMostReproof.get(s).toString());
             } else {
@@ -145,20 +148,24 @@ public class DashboardController {
 
     private List<Student> getStudentWithYellowStatusArrayList(Iterator<Map.Entry<String, Student>> studentsIt) {
         List<Student> students = new ArrayList<>();
-        while (studentsIt.hasNext())
-            if(studentsIt.next().getValue().getStatus() == StudentStatus.VERMELHO){
-                students.add(studentsIt.next().getValue());
+        while (studentsIt.hasNext()) {
+            Student student = studentsIt.next().getValue();
+            if (student.getStatus() == StudentStatus.AMARELO) {
+                students.add(student);
             }
+        }
         return students;
     }
 
 
     private List<Student> getNotGraduatingStudentsArrayList(Iterator<Map.Entry<String, Student>> studentsIt) {
         List<Student> students = new ArrayList<>();
-        while (studentsIt.hasNext())
-            if(studentsIt.next().getValue().getTimeToConclusion() > 5){
-                students.add(studentsIt.next().getValue());
+        while (studentsIt.hasNext()) {
+            Student student = studentsIt.next().getValue();
+            if (student.getTimeToConclusion() > 5) {
+                students.add(student);
             }
+        }
         return students;
     }
 }
